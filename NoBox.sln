@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30011.22
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoBox", "NoBox.csproj", "{C41C5C40-3D9F-4705-8E6F-D9C41D200BA3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoBox", "src\NoBox\NoBox.csproj", "{C41C5C40-3D9F-4705-8E6F-D9C41D200BA3}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoBox.Tests", "..\NoBox.Tests\NoBox.Tests.csproj", "{9110F445-6E4A-49EC-8088-6C8001A032FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoBox.Tests", "src\NoBox.Tests\NoBox.Tests.csproj", "{9110F445-6E4A-49EC-8088-6C8001A032FC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{2C2E833D-20BC-4960-9AFF-ED53F1E9C733}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9A7649D6-9AE8-4DCD-A302-6DAF65C1C62D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoBox.Benchmarks", "..\NoBox.Benchmarks\NoBox.Benchmarks.csproj", "{E1E410E2-1950-4592-ADFC-037026139A6D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NoBox.Benchmarks", "src\NoBox.Benchmarks\NoBox.Benchmarks.csproj", "{E1E410E2-1950-4592-ADFC-037026139A6D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

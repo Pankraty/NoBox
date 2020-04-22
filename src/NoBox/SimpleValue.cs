@@ -186,5 +186,30 @@ namespace Pankraty.NoBox
         }
 
         #endregion ToString
+
+        /// <summary>
+        /// Check if the current instance belong to one of the numeric types.
+        /// </summary>
+        public bool IsNumber()
+        {
+            switch (ValueType)
+            {
+                case SimpleValueType.SByte:
+                case SimpleValueType.Byte:
+                case SimpleValueType.Short:
+                case SimpleValueType.UShort:
+                case SimpleValueType.Int:
+                case SimpleValueType.UInt:
+                case SimpleValueType.Long:
+                case SimpleValueType.ULong:
+                case SimpleValueType.Float:
+                case SimpleValueType.Double:
+                case SimpleValueType.Decimal:
+                    return true;
+
+                default: 
+                    return false;
+            }
+        }
     }
 }

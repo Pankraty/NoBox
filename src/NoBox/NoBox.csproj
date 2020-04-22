@@ -3,6 +3,11 @@
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;net40;net46</TargetFrameworks>
     <RootNamespace>Pankraty.NoBox</RootNamespace>
+    <Version>0.1.0</Version>
+    <RepositoryUrl>https://github.com/Pankraty/NoBox</RepositoryUrl>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Authors>Pankraty</Authors>
+    <Description>A C# library aimed to operate with different primitive types with no boxing</Description>
   </PropertyGroup>
 
 </Project>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Runtime.InteropServices;
 
 namespace Pankraty.NoBox
@@ -87,5 +88,103 @@ namespace Pankraty.NoBox
         public static implicit operator SimpleValue (decimal    value) { return new SimpleValue(value); }
 
         #endregion Implicit Cast
+
+        #region ToString
+
+        /// <summary>
+        /// Converts the value of this instance to its equivalent string representation using the formatting conventions of the current culture.
+        /// </summary>
+        /// <exception cref="T:System.FormatException"><paramref name="format">format</paramref> is invalid.</exception>
+        /// <exception cref="T:System.ArgumentOutOfRangeException">The date and time is outside the range of dates supported by the calendar used by <paramref name="provider">provider</paramref>.</exception>
+        public override string ToString()
+        {
+            return ToString("", CultureInfo.CurrentCulture);
+        }
+
+        /// <summary>
+        /// Converts the value of this instance to its equivalent string representation using the specified format and the formatting conventions of the current culture.
+        /// </summary>
+        /// <param name="format">A standard of custom format string (valid formats depend on the underlying type).</param>
+        /// <exception cref="T:System.FormatException"><paramref name="format">format</paramref> is invalid.</exception>
+        /// <exception cref="T:System.ArgumentOutOfRangeException">The date and time is outside the range of dates supported by the calendar used by <paramref name="provider">provider</paramref>.</exception>
+        public string ToString(string format)
+        {
+            return ToString(format, CultureInfo.CurrentCulture);
+        }
+
+        /// <summary>
+        /// Converts the value of this instance to its equivalent string representation using the specified culture-specific format information.
+        /// </summary>
+        /// <param name="provider">An object that supplies culture-specific formatting information.</param>
+        /// <exception cref="T:System.FormatException"><paramref name="format">format</paramref> is invalid.</exception>
+        /// <exception cref="T:System.ArgumentOutOfRangeException">The date and time is outside the range of dates supported by the calendar used by <paramref name="provider">provider</paramref>.</exception>
+        public string ToString(IFormatProvider formatProvider)
+        {
+            return ToString("", formatProvider);
+        }
+
+        /// <summary>
+        /// Converts the value of this instance to its equivalent string representation using the specified format and culture-specific format information.
+        /// </summary>
+        /// <param name="format">A standard of custom format string (valid formats depend on the underlying type).</param>
+        /// <param name="provider">An object that supplies culture-specific formatting information.</param>
+        /// <exception cref="T:System.FormatException"><paramref name="format">format</paramref> is invalid.</exception>
+        /// <exception cref="T:System.ArgumentOutOfRangeException">The date and time is outside the range of dates supported by the calendar used by <paramref name="provider">provider</paramref>.</exception>
+        public string ToString(string format, IFormatProvider provider)
+        {
+            switch (ValueType)
+            {
+                case SimpleValueType.Bool:
+                    return _boolValue.ToString(provider);
+                    
+                case SimpleValueType.SByte:
+                    return _sByteValue.ToString(format, provider);
+
+                case SimpleValueType.Byte:
+                    return _byteValue.ToString(format, provider);
+
+                case SimpleValueType.Short:
+                    return _shortValue.ToString(format, provider);
+
+                case SimpleValueType.UShort:
+                    return _uShortValue.ToString(format, provider);
+
+                case SimpleValueType.Int:
+                    return _intValue.ToString(format, provider);
+
+                case SimpleValueType.UInt:
+                    return _uIntValue.ToString(format, provider);
+
+                case SimpleValueType.Long:
+                    return _longValue.ToString(format, provider);
+
+                case SimpleValueType.ULong:
+                    return _uLongValue.ToString(format, provider);
+
+                case SimpleValueType.Float:
+                    return _floatValue.ToString(format, provider);
+
+                case SimpleValueType.Double:
+                    return _doubleValue.ToString(format, provider);
+
+                case SimpleValueType.Char:
+                    return _charValue.ToString(provider);
+
+                case SimpleValueType.DateTime:
+                    return _dateTimeValue.ToString(format, provider);
+
+                case SimpleValueType.TimeSpan:
+                    return _timeSpanValue.ToString(format, provider);
+
+                case SimpleValueType.Decimal:
+                    return _decimalValue.ToString(format, provider);
+
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(ValueType), $"Unrecognized value type {ValueType}");
+
+            }
+        }
+
+        #endregion ToString
     }
 }

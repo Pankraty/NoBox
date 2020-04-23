@@ -6,6 +6,17 @@ namespace NoBox.Tests.SimpleValueTests
 {
     public class SimpleValueCreateTests : TheoryTestBase
     {
+        [Test]
+        public void CheckSize()
+        {
+            //Protect from adding new fields that are too large
+            unsafe
+            {
+                var size = sizeof(SimpleValue);
+                Assert.AreEqual(20, size);
+            }
+        }
+
         [Theory]
         public void CanCreateSimpleValue_FromBool(bool value)
         {

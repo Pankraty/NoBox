@@ -9,7 +9,7 @@ namespace NoBox.Benchmarks
     {
         public string Description => "In this benchmark we generate many simple values (either boxed to Object " +
                                      "or presented as SimpleValue) but do not let them be collected in Gen0. " +
-                                     "Here we expect the most apparent difference between two.";
+                                     "Here we expect the most apparent difference between the two.";
 
         public static int Iterations = 10_000_000;
 
@@ -55,7 +55,7 @@ namespace NoBox.Benchmarks
                 if (l.Count > 1_000_000)
                     l.Clear();
 
-                if (v.ValueType == SimpleValueType.Bool)
+                if (v.ValueType == SimpleValueType.Bool && v)
                 {
                     count++;
                 }

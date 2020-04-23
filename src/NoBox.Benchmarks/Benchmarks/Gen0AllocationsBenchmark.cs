@@ -9,7 +9,7 @@ namespace NoBox.Benchmarks
     {
         public string Description => "In this benchmark we generate many simple values (either boxed to Object " +
                                      "or presented as SimpleValue) that are mostly collected in Gen0. It is natural " +
-                                     "that native types work faster, we just make sure our implementation is not too bad" +
+                                     "that native types work faster, we just make sure our implementation is not too bad " +
                                      "in this scenario";
 
         public static int Iterations = 10_000_000;
@@ -48,7 +48,7 @@ namespace NoBox.Benchmarks
             {
                 var v = _simpleValuesGenerator.GetNext();
 
-                if (v.ValueType == SimpleValueType.Bool)
+                if (v.ValueType == SimpleValueType.Bool && v)
                 {
                     count++;
                 }

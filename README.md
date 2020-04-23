@@ -2,7 +2,7 @@
 
 [![Build status](https://ci.appveyor.com/api/projects/status/3b5mhdn26d19pec9?svg=true)](https://ci.appveyor.com/project/Pankraty/nobox)
 
-Have you ever struggled with properties that must able to accept values of various primitive types, such as `int`, `double`, or `decimal`, and return the same value it was put there before? If so, then you probably had to define the type of such property as `System.Object` which basically meant that all values you pass to that property are [boxed and then unboxed](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/types/boxing-and-unboxing). A single boxing operation costs almost nothing, but such operations tend to pile up, inducing a heavy load to the garbage collector (GC).
+Have you ever struggled with properties that must be able to accept values of various primitive types, such as `int`, `double`, or `decimal`, and return the same value it was put there before? If so, then you probably had to define the type of such property as `System.Object` which basically meant that all values you pass to that property are [boxed and then unboxed](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/types/boxing-and-unboxing). A single boxing operation costs almost nothing, but such operations tend to pile up, inducing a heavy load to the garbage collector (GC).
 
 The `NoBox` library aims to provide an efficient way to operate with primitive values of different types without a need to cast them to `Object` or `ValueType` (thus boxing them). And even though the library is on its earliest beta (or should I say alpha), the first benchmarks look quite promising.
 

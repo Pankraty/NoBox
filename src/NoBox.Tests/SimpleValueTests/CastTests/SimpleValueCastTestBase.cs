@@ -11,10 +11,12 @@ namespace NoBox.Tests.SimpleValueTests.CastTests
         {
             get
             {
-                yield return new TestCaseData(new Func<SimpleValue, bool    >(v => v));
-                yield return new TestCaseData(new Func<SimpleValue, char    >(v => v));
-                yield return new TestCaseData(new Func<SimpleValue, DateTime>(v => v));
-                yield return new TestCaseData(new Func<SimpleValue, TimeSpan>(v => v));
+                yield return new TestCaseData(new Func<SimpleValue, bool          >(v => v));
+                yield return new TestCaseData(new Func<SimpleValue, char          >(v => v));
+                yield return new TestCaseData(new Func<SimpleValue, DateTime      >(v => v));
+                yield return new TestCaseData(new Func<SimpleValue, DateTimeOffset>(v => v));
+                yield return new TestCaseData(new Func<SimpleValue, TimeSpan      >(v => v));
+                yield return new TestCaseData(new Func<SimpleValue, Guid          >(v => v));
             }
         }
     }

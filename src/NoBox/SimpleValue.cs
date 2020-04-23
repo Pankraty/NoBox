@@ -54,22 +54,262 @@ namespace Pankraty.NoBox
         #endregion Constructors
 
         #region Implicit Cast
+        
+        public static implicit operator bool(SimpleValue value)
+        {
+            if (value.ValueType == SimpleValueType.Bool)
+                return value._boolValue;
 
-        public static implicit operator bool      (SimpleValue value) { return value._boolValue;     }
-        public static implicit operator sbyte     (SimpleValue value) { return value._sByteValue;    }
-        public static implicit operator byte      (SimpleValue value) { return value._byteValue;     }
-        public static implicit operator short     (SimpleValue value) { return value._shortValue;    }
-        public static implicit operator ushort    (SimpleValue value) { return value._uShortValue;   }
-        public static implicit operator int       (SimpleValue value) { return value._intValue;      }
-        public static implicit operator uint      (SimpleValue value) { return value._uIntValue;     }
-        public static implicit operator long      (SimpleValue value) { return value._longValue;     }
-        public static implicit operator ulong     (SimpleValue value) { return value._uLongValue;    }
-        public static implicit operator float     (SimpleValue value) { return value._floatValue;    }
-        public static implicit operator double    (SimpleValue value) { return value._doubleValue;   }
-        public static implicit operator char      (SimpleValue value) { return value._charValue;     }
-        public static implicit operator DateTime  (SimpleValue value) { return value._dateTimeValue; }
-        public static implicit operator TimeSpan  (SimpleValue value) { return value._timeSpanValue; }
-        public static implicit operator decimal   (SimpleValue value) { return value._decimalValue;  }
+            throw new InvalidCastException();
+        }
+
+        public static implicit operator sbyte     (SimpleValue value)
+        {
+            return value.ValueType switch
+            {
+                SimpleValueType.SByte    => (sbyte) value._sByteValue,
+                SimpleValueType.Byte     => (sbyte) value._byteValue,
+                SimpleValueType.Short    => (sbyte) value._shortValue,
+                SimpleValueType.UShort   => (sbyte) value._uShortValue,
+                SimpleValueType.Int      => (sbyte) value._intValue,
+                SimpleValueType.UInt     => (sbyte) value._uIntValue,
+                SimpleValueType.Long     => (sbyte) value._longValue,
+                SimpleValueType.ULong    => (sbyte) value._uLongValue,
+                SimpleValueType.Float    => (sbyte) value._floatValue,
+                SimpleValueType.Double   => (sbyte) value._doubleValue,
+                SimpleValueType.Char     => (sbyte) value._charValue,
+                SimpleValueType.Decimal  => (sbyte) value._decimalValue,
+                _                        => throw new InvalidCastException()
+            };
+        }
+
+        public static implicit operator byte      (SimpleValue value) 
+        {
+            return value.ValueType switch
+            {
+                SimpleValueType.SByte    => (byte) value._sByteValue,
+                SimpleValueType.Byte     => (byte) value._byteValue,
+                SimpleValueType.Short    => (byte) value._shortValue,
+                SimpleValueType.UShort   => (byte) value._uShortValue,
+                SimpleValueType.Int      => (byte) value._intValue,
+                SimpleValueType.UInt     => (byte) value._uIntValue,
+                SimpleValueType.Long     => (byte) value._longValue,
+                SimpleValueType.ULong    => (byte) value._uLongValue,
+                SimpleValueType.Float    => (byte) value._floatValue,
+                SimpleValueType.Double   => (byte) value._doubleValue,
+                SimpleValueType.Char     => (byte) value._charValue,
+                SimpleValueType.Decimal  => (byte) value._decimalValue,
+                _                        => throw new InvalidCastException()
+            };
+        }
+
+        public static implicit operator short     (SimpleValue value) 
+        {
+            return value.ValueType switch
+            {
+                SimpleValueType.SByte    => (short) value._sByteValue,
+                SimpleValueType.Byte     => (short) value._byteValue,
+                SimpleValueType.Short    => (short) value._shortValue,
+                SimpleValueType.UShort   => (short) value._uShortValue,
+                SimpleValueType.Int      => (short) value._intValue,
+                SimpleValueType.UInt     => (short) value._uIntValue,
+                SimpleValueType.Long     => (short) value._longValue,
+                SimpleValueType.ULong    => (short) value._uLongValue,
+                SimpleValueType.Float    => (short) value._floatValue,
+                SimpleValueType.Double   => (short) value._doubleValue,
+                SimpleValueType.Char     => (short) value._charValue,
+                SimpleValueType.Decimal  => (short) value._decimalValue,
+                _                        => throw new InvalidCastException()
+            };
+        }
+
+        public static implicit operator ushort    (SimpleValue value)
+        {
+            return value.ValueType switch
+            {
+                SimpleValueType.SByte    => (ushort) value._sByteValue,
+                SimpleValueType.Byte     => (ushort) value._byteValue,
+                SimpleValueType.Short    => (ushort) value._shortValue,
+                SimpleValueType.UShort   => (ushort) value._uShortValue,
+                SimpleValueType.Int      => (ushort) value._intValue,
+                SimpleValueType.UInt     => (ushort) value._uIntValue,
+                SimpleValueType.Long     => (ushort) value._longValue,
+                SimpleValueType.ULong    => (ushort) value._uLongValue,
+                SimpleValueType.Float    => (ushort) value._floatValue,
+                SimpleValueType.Double   => (ushort) value._doubleValue,
+                SimpleValueType.Char     => (ushort) value._charValue,
+                SimpleValueType.Decimal  => (ushort) value._decimalValue,
+                _                        => throw new InvalidCastException()
+            };
+
+        }
+
+        public static implicit operator int       (SimpleValue value) 
+        {
+            return value.ValueType switch
+            {
+                SimpleValueType.SByte    => (int) value._sByteValue,
+                SimpleValueType.Byte     => (int) value._byteValue,
+                SimpleValueType.Short    => (int) value._shortValue,
+                SimpleValueType.UShort   => (int) value._uShortValue,
+                SimpleValueType.Int      => (int) value._intValue,
+                SimpleValueType.UInt     => (int) value._uIntValue,
+                SimpleValueType.Long     => (int) value._longValue,
+                SimpleValueType.ULong    => (int) value._uLongValue,
+                SimpleValueType.Float    => (int) value._floatValue,
+                SimpleValueType.Double   => (int) value._doubleValue,
+                SimpleValueType.Char     => (int) value._charValue,
+                SimpleValueType.Decimal  => (int) value._decimalValue,
+                _                        => throw new InvalidCastException()
+            };
+
+        }
+
+        public static implicit operator uint      (SimpleValue value) 
+        {
+            return value.ValueType switch
+            {
+                SimpleValueType.SByte    => (uint) value._sByteValue,
+                SimpleValueType.Byte     => (uint) value._byteValue,
+                SimpleValueType.Short    => (uint) value._shortValue,
+                SimpleValueType.UShort   => (uint) value._uShortValue,
+                SimpleValueType.Int      => (uint) value._intValue,
+                SimpleValueType.UInt     => (uint) value._uIntValue,
+                SimpleValueType.Long     => (uint) value._longValue,
+                SimpleValueType.ULong    => (uint) value._uLongValue,
+                SimpleValueType.Float    => (uint) value._floatValue,
+                SimpleValueType.Double   => (uint) value._doubleValue,
+                SimpleValueType.Char     => (uint) value._charValue,
+                SimpleValueType.Decimal  => (uint) value._decimalValue,
+                _                        => throw new InvalidCastException()
+            };
+        }
+
+        public static implicit operator long      (SimpleValue value) 
+        {
+            return value.ValueType switch
+            {
+                SimpleValueType.SByte    => (long) value._sByteValue,
+                SimpleValueType.Byte     => (long) value._byteValue,
+                SimpleValueType.Short    => (long) value._shortValue,
+                SimpleValueType.UShort   => (long) value._uShortValue,
+                SimpleValueType.Int      => (long) value._intValue,
+                SimpleValueType.UInt     => (long) value._uIntValue,
+                SimpleValueType.Long     => (long) value._longValue,
+                SimpleValueType.ULong    => (long) value._uLongValue,
+                SimpleValueType.Float    => (long) value._floatValue,
+                SimpleValueType.Double   => (long) value._doubleValue,
+                SimpleValueType.Char     => (long) value._charValue,
+                SimpleValueType.Decimal  => (long) value._decimalValue,
+                _                        => throw new InvalidCastException()
+            };
+        }
+
+        public static implicit operator ulong     (SimpleValue value) 
+        {
+            return value.ValueType switch
+            {
+                SimpleValueType.SByte    => (ulong) value._sByteValue,
+                SimpleValueType.Byte     => (ulong) value._byteValue,
+                SimpleValueType.Short    => (ulong) value._shortValue,
+                SimpleValueType.UShort   => (ulong) value._uShortValue,
+                SimpleValueType.Int      => (ulong) value._intValue,
+                SimpleValueType.UInt     => (ulong) value._uIntValue,
+                SimpleValueType.Long     => (ulong) value._longValue,
+                SimpleValueType.ULong    => (ulong) value._uLongValue,
+                SimpleValueType.Float    => (ulong) value._floatValue,
+                SimpleValueType.Double   => (ulong) value._doubleValue,
+                SimpleValueType.Char     => (ulong) value._charValue,
+                SimpleValueType.Decimal  => (ulong) value._decimalValue,
+                _                        => throw new InvalidCastException()
+            };
+
+        }
+
+        public static implicit operator float     (SimpleValue value) 
+        {
+            return value.ValueType switch
+            {
+                SimpleValueType.SByte    => (float) value._sByteValue,
+                SimpleValueType.Byte     => (float) value._byteValue,
+                SimpleValueType.Short    => (float) value._shortValue,
+                SimpleValueType.UShort   => (float) value._uShortValue,
+                SimpleValueType.Int      => (float) value._intValue,
+                SimpleValueType.UInt     => (float) value._uIntValue,
+                SimpleValueType.Long     => (float) value._longValue,
+                SimpleValueType.ULong    => (float) value._uLongValue,
+                SimpleValueType.Float    => (float) value._floatValue,
+                SimpleValueType.Double   => (float) value._doubleValue,
+                SimpleValueType.Char     => (float) value._charValue,
+                SimpleValueType.Decimal  => (float) value._decimalValue,
+                _                        => throw new InvalidCastException()
+            };
+        }
+
+        public static implicit operator double    (SimpleValue value)
+        {
+            return value.ValueType switch
+            {
+                SimpleValueType.SByte    => (double) value._sByteValue,
+                SimpleValueType.Byte     => (double) value._byteValue,
+                SimpleValueType.Short    => (double) value._shortValue,
+                SimpleValueType.UShort   => (double) value._uShortValue,
+                SimpleValueType.Int      => (double) value._intValue,
+                SimpleValueType.UInt     => (double) value._uIntValue,
+                SimpleValueType.Long     => (double) value._longValue,
+                SimpleValueType.ULong    => (double) value._uLongValue,
+                SimpleValueType.Float    => (double) value._floatValue,
+                SimpleValueType.Double   => (double) value._doubleValue,
+                SimpleValueType.Char     => (double) value._charValue,
+                SimpleValueType.Decimal  => (double) value._decimalValue,
+                _                        => throw new InvalidCastException()
+            };
+        }
+
+        public static implicit operator char      (SimpleValue value) 
+        {
+            if (value.ValueType == SimpleValueType.Char)
+                return value._charValue;
+
+            throw new InvalidCastException();
+        }
+
+        public static implicit operator DateTime  (SimpleValue value)
+        {
+            if (value.ValueType == SimpleValueType.DateTime)
+                return value._dateTimeValue;
+
+            throw new InvalidCastException();
+        }
+
+        public static implicit operator TimeSpan  (SimpleValue value)
+        {
+            if (value.ValueType == SimpleValueType.TimeSpan)
+                return value._timeSpanValue;
+
+            throw new InvalidCastException();
+        }
+
+        public static implicit operator decimal   (SimpleValue value)
+        {
+            return value.ValueType switch
+            {
+                SimpleValueType.SByte    => (decimal) value._sByteValue,
+                SimpleValueType.Byte     => (decimal) value._byteValue,
+                SimpleValueType.Short    => (decimal) value._shortValue,
+                SimpleValueType.UShort   => (decimal) value._uShortValue,
+                SimpleValueType.Int      => (decimal) value._intValue,
+                SimpleValueType.UInt     => (decimal) value._uIntValue,
+                SimpleValueType.Long     => (decimal) value._longValue,
+                SimpleValueType.ULong    => (decimal) value._uLongValue,
+                SimpleValueType.Float    => (decimal) value._floatValue,
+                SimpleValueType.Double   => (decimal) value._doubleValue,
+                SimpleValueType.Char     => (decimal) value._charValue,
+                SimpleValueType.Decimal  => (decimal) value._decimalValue,
+                _                        => throw new InvalidCastException()
+            };
+        }
+
 
         public static implicit operator SimpleValue (bool       value) { return new SimpleValue(value); }
         public static implicit operator SimpleValue (sbyte      value) { return new SimpleValue(value); }

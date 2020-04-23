@@ -49,7 +49,7 @@ namespace Pankraty.NoBox
         public SimpleValue(char     value) : this() { _charValue     = value; _valueType = SimpleValueType.Char;     }
         public SimpleValue(DateTime value) : this() { _dateTimeValue = value; _valueType = SimpleValueType.DateTime; }
         public SimpleValue(TimeSpan value) : this() { _timeSpanValue = value; _valueType = SimpleValueType.TimeSpan; }
-        public SimpleValue(decimal  value) : this() { _decimalValue = value;  _valueType = SimpleValueType.Decimal;  }
+        public SimpleValue(decimal  value) : this() { _decimalValue  = value; _valueType = SimpleValueType.Decimal;  }
 
         #endregion Constructors
 
@@ -132,57 +132,25 @@ namespace Pankraty.NoBox
         /// <exception cref="T:System.ArgumentOutOfRangeException">The date and time is outside the range of dates supported by the calendar used by <paramref name="provider">provider</paramref>.</exception>
         public string ToString(string format, IFormatProvider provider)
         {
-            switch (ValueType)
+            return ValueType switch
             {
-                case SimpleValueType.Bool:
-                    return _boolValue.ToString(provider);
-                    
-                case SimpleValueType.SByte:
-                    return _sByteValue.ToString(format, provider);
-
-                case SimpleValueType.Byte:
-                    return _byteValue.ToString(format, provider);
-
-                case SimpleValueType.Short:
-                    return _shortValue.ToString(format, provider);
-
-                case SimpleValueType.UShort:
-                    return _uShortValue.ToString(format, provider);
-
-                case SimpleValueType.Int:
-                    return _intValue.ToString(format, provider);
-
-                case SimpleValueType.UInt:
-                    return _uIntValue.ToString(format, provider);
-
-                case SimpleValueType.Long:
-                    return _longValue.ToString(format, provider);
-
-                case SimpleValueType.ULong:
-                    return _uLongValue.ToString(format, provider);
-
-                case SimpleValueType.Float:
-                    return _floatValue.ToString(format, provider);
-
-                case SimpleValueType.Double:
-                    return _doubleValue.ToString(format, provider);
-
-                case SimpleValueType.Char:
-                    return _charValue.ToString(provider);
-
-                case SimpleValueType.DateTime:
-                    return _dateTimeValue.ToString(format, provider);
-
-                case SimpleValueType.TimeSpan:
-                    return _timeSpanValue.ToString(format, provider);
-
-                case SimpleValueType.Decimal:
-                    return _decimalValue.ToString(format, provider);
-
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(ValueType), $"Unrecognized value type {ValueType}");
-
-            }
+                SimpleValueType.Bool     => _boolValue.ToString(provider),
+                SimpleValueType.SByte    => _sByteValue.ToString(format, provider),
+                SimpleValueType.Byte     => _byteValue.ToString(format, provider),
+                SimpleValueType.Short    => _shortValue.ToString(format, provider),
+                SimpleValueType.UShort   => _uShortValue.ToString(format, provider),
+                SimpleValueType.Int      => _intValue.ToString(format, provider),
+                SimpleValueType.UInt     => _uIntValue.ToString(format, provider),
+                SimpleValueType.Long     => _longValue.ToString(format, provider),
+                SimpleValueType.ULong    => _uLongValue.ToString(format, provider),
+                SimpleValueType.Float    => _floatValue.ToString(format, provider),
+                SimpleValueType.Double   => _doubleValue.ToString(format, provider),
+                SimpleValueType.Char     => _charValue.ToString(provider),
+                SimpleValueType.DateTime => _dateTimeValue.ToString(format, provider),
+                SimpleValueType.TimeSpan => _timeSpanValue.ToString(format, provider),
+                SimpleValueType.Decimal  => _decimalValue.ToString(format, provider),
+                _                        => throw new ArgumentOutOfRangeException(nameof(ValueType), $"Unrecognized value type {ValueType}")
+            };
         }
 
         #endregion ToString
@@ -192,24 +160,21 @@ namespace Pankraty.NoBox
         /// </summary>
         public bool IsNumber()
         {
-            switch (ValueType)
+            return ValueType switch
             {
-                case SimpleValueType.SByte:
-                case SimpleValueType.Byte:
-                case SimpleValueType.Short:
-                case SimpleValueType.UShort:
-                case SimpleValueType.Int:
-                case SimpleValueType.UInt:
-                case SimpleValueType.Long:
-                case SimpleValueType.ULong:
-                case SimpleValueType.Float:
-                case SimpleValueType.Double:
-                case SimpleValueType.Decimal:
-                    return true;
-
-                default: 
-                    return false;
-            }
+                SimpleValueType.SByte   => true,
+                SimpleValueType.Byte    => true,
+                SimpleValueType.Short   => true,
+                SimpleValueType.UShort  => true,
+                SimpleValueType.Int     => true,
+                SimpleValueType.UInt    => true,
+                SimpleValueType.Long    => true,
+                SimpleValueType.ULong   => true,
+                SimpleValueType.Float   => true,
+                SimpleValueType.Double  => true,
+                SimpleValueType.Decimal => true,
+                _                       => false
+            };
         }
     }
 }

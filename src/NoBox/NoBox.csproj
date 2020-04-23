@@ -8,6 +8,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Pankraty</Authors>
     <Description>A C# library aimed to operate with different primitive types with no boxing</Description>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
 
 </Project>

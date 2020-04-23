@@ -5,20 +5,21 @@ using System.Collections.Generic;
 
 namespace NoBox.Tests.SimpleValueTests.CastTests
 {
-    public class CastBoolTests
+    public class CastTimeSpanTests
     {
-        [TestCaseSource(nameof(CastBoolInvalidSources))]
-        public void CannotCastBoolToAny<T>(Func<SimpleValue, T> castMethod)
+        [TestCaseSource(nameof(CastTimeSpanInvalidSources))]
+        public void CannotCastTimeSpanToAny<T>(Func<SimpleValue, T> castMethod)
         {
-            SimpleValue v = true;
+            SimpleValue v = TimeSpan.FromHours(5);
 
             Assert.Throws<InvalidCastException>(() => castMethod(v));
         }
 
-        private static IEnumerable<TestCaseData> CastBoolInvalidSources
+        private static IEnumerable<TestCaseData> CastTimeSpanInvalidSources
         {
             get
             {
+                yield return new TestCaseData(new Func<SimpleValue, bool          >(v => v));
                 yield return new TestCaseData(new Func<SimpleValue, sbyte         >(v => v));
                 yield return new TestCaseData(new Func<SimpleValue, byte          >(v => v));
                 yield return new TestCaseData(new Func<SimpleValue, short         >(v => v));
@@ -32,7 +33,6 @@ namespace NoBox.Tests.SimpleValueTests.CastTests
                 yield return new TestCaseData(new Func<SimpleValue, char          >(v => v));
                 yield return new TestCaseData(new Func<SimpleValue, DateTime      >(v => v));
                 yield return new TestCaseData(new Func<SimpleValue, DateTimeOffset>(v => v));
-                yield return new TestCaseData(new Func<SimpleValue, TimeSpan      >(v => v));
                 yield return new TestCaseData(new Func<SimpleValue, Guid          >(v => v));
                 yield return new TestCaseData(new Func<SimpleValue, decimal       >(v => v));
             }

@@ -16,7 +16,9 @@
         , Double
         , Char
         , DateTime
+        , DateTimeOffset
         , TimeSpan
+        , Guid
         , Decimal
     }
 }

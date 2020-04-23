@@ -15,47 +15,51 @@ namespace Pankraty.NoBox
 
         #region Data Fields
 
-        [FieldOffset(DataOffset)] private readonly bool      _boolValue;
-        [FieldOffset(DataOffset)] private readonly sbyte     _sByteValue;
-        [FieldOffset(DataOffset)] private readonly byte      _byteValue;
-        [FieldOffset(DataOffset)] private readonly short     _shortValue;
-        [FieldOffset(DataOffset)] private readonly ushort    _uShortValue;
-        [FieldOffset(DataOffset)] private readonly int       _intValue;
-        [FieldOffset(DataOffset)] private readonly uint      _uIntValue;
-        [FieldOffset(DataOffset)] private readonly long      _longValue;
-        [FieldOffset(DataOffset)] private readonly ulong     _uLongValue;
-        [FieldOffset(DataOffset)] private readonly float     _floatValue;
-        [FieldOffset(DataOffset)] private readonly double    _doubleValue; 
-        [FieldOffset(DataOffset)] private readonly char      _charValue;
-        [FieldOffset(DataOffset)] private readonly DateTime  _dateTimeValue;
-        [FieldOffset(DataOffset)] private readonly TimeSpan  _timeSpanValue;
-        [FieldOffset(DataOffset)] private readonly decimal   _decimalValue;
+        [FieldOffset(DataOffset)] private readonly bool           _boolValue;
+        [FieldOffset(DataOffset)] private readonly sbyte          _sByteValue;
+        [FieldOffset(DataOffset)] private readonly byte           _byteValue;
+        [FieldOffset(DataOffset)] private readonly short          _shortValue;
+        [FieldOffset(DataOffset)] private readonly ushort         _uShortValue;
+        [FieldOffset(DataOffset)] private readonly int            _intValue;
+        [FieldOffset(DataOffset)] private readonly uint           _uIntValue;
+        [FieldOffset(DataOffset)] private readonly long           _longValue;
+        [FieldOffset(DataOffset)] private readonly ulong          _uLongValue;
+        [FieldOffset(DataOffset)] private readonly float          _floatValue;
+        [FieldOffset(DataOffset)] private readonly double         _doubleValue; 
+        [FieldOffset(DataOffset)] private readonly char           _charValue;
+        [FieldOffset(DataOffset)] private readonly DateTime       _dateTimeValue;
+        [FieldOffset(DataOffset)] private readonly DateTimeOffset _dateTimeOffsetValue;
+        [FieldOffset(DataOffset)] private readonly TimeSpan       _timeSpanValue;
+        [FieldOffset(DataOffset)] private readonly Guid           _guidValue;
+        [FieldOffset(DataOffset)] private readonly decimal        _decimalValue;
 
         #endregion Data Fields
 
         #region Constructors
 
-        public SimpleValue(bool     value) : this() { _boolValue     = value; _valueType = SimpleValueType.Bool;     }
-        public SimpleValue(sbyte    value) : this() { _sByteValue    = value; _valueType = SimpleValueType.SByte;    }
-        public SimpleValue(byte     value) : this() { _byteValue     = value; _valueType = SimpleValueType.Byte;     }
-        public SimpleValue(short    value) : this() { _shortValue    = value; _valueType = SimpleValueType.Short;    }
-        public SimpleValue(ushort   value) : this() { _uShortValue   = value; _valueType = SimpleValueType.UShort;   }
-        public SimpleValue(int      value) : this() { _intValue      = value; _valueType = SimpleValueType.Int;      }
-        public SimpleValue(uint     value) : this() { _uIntValue     = value; _valueType = SimpleValueType.UInt;     }
-        public SimpleValue(long     value) : this() { _longValue     = value; _valueType = SimpleValueType.Long;     }
-        public SimpleValue(ulong    value) : this() { _uLongValue    = value; _valueType = SimpleValueType.ULong;    }
-        public SimpleValue(float    value) : this() { _floatValue    = value; _valueType = SimpleValueType.Float;    }
-        public SimpleValue(double   value) : this() { _doubleValue   = value; _valueType = SimpleValueType.Double;   }
-        public SimpleValue(char     value) : this() { _charValue     = value; _valueType = SimpleValueType.Char;     }
-        public SimpleValue(DateTime value) : this() { _dateTimeValue = value; _valueType = SimpleValueType.DateTime; }
-        public SimpleValue(TimeSpan value) : this() { _timeSpanValue = value; _valueType = SimpleValueType.TimeSpan; }
-        public SimpleValue(decimal  value) : this() { _decimalValue  = value; _valueType = SimpleValueType.Decimal;  }
+        public SimpleValue(bool           value) : this() { _boolValue           = value; _valueType = SimpleValueType.Bool;           }
+        public SimpleValue(sbyte          value) : this() { _sByteValue          = value; _valueType = SimpleValueType.SByte;          }
+        public SimpleValue(byte           value) : this() { _byteValue           = value; _valueType = SimpleValueType.Byte;           }
+        public SimpleValue(short          value) : this() { _shortValue          = value; _valueType = SimpleValueType.Short;          }
+        public SimpleValue(ushort         value) : this() { _uShortValue         = value; _valueType = SimpleValueType.UShort;         }
+        public SimpleValue(int            value) : this() { _intValue            = value; _valueType = SimpleValueType.Int;            }
+        public SimpleValue(uint           value) : this() { _uIntValue           = value; _valueType = SimpleValueType.UInt;           }
+        public SimpleValue(long           value) : this() { _longValue           = value; _valueType = SimpleValueType.Long;           }
+        public SimpleValue(ulong          value) : this() { _uLongValue          = value; _valueType = SimpleValueType.ULong;          }
+        public SimpleValue(float          value) : this() { _floatValue          = value; _valueType = SimpleValueType.Float;          }
+        public SimpleValue(double         value) : this() { _doubleValue         = value; _valueType = SimpleValueType.Double;         }
+        public SimpleValue(char           value) : this() { _charValue           = value; _valueType = SimpleValueType.Char;           }
+        public SimpleValue(DateTime       value) : this() { _dateTimeValue       = value; _valueType = SimpleValueType.DateTime;       }
+        public SimpleValue(DateTimeOffset value) : this() { _dateTimeOffsetValue = value; _valueType = SimpleValueType.DateTimeOffset; }
+        public SimpleValue(TimeSpan       value) : this() { _timeSpanValue       = value; _valueType = SimpleValueType.TimeSpan;       }
+        public SimpleValue(Guid           value) : this() { _guidValue           = value; _valueType = SimpleValueType.Guid;           }
+        public SimpleValue(decimal        value) : this() { _decimalValue        = value; _valueType = SimpleValueType.Decimal;        }
 
         #endregion Constructors
 
         #region Implicit Cast
         
-        public static implicit operator bool(SimpleValue value)
+        public static implicit operator bool          (SimpleValue value)
         {
             if (value.ValueType == SimpleValueType.Bool)
                 return value._boolValue;
@@ -63,7 +67,7 @@ namespace Pankraty.NoBox
             throw new InvalidCastException();
         }
 
-        public static implicit operator sbyte     (SimpleValue value)
+        public static implicit operator sbyte         (SimpleValue value)
         {
             return value.ValueType switch
             {
@@ -83,7 +87,7 @@ namespace Pankraty.NoBox
             };
         }
 
-        public static implicit operator byte      (SimpleValue value) 
+        public static implicit operator byte          (SimpleValue value) 
         {
             return value.ValueType switch
             {
@@ -103,7 +107,7 @@ namespace Pankraty.NoBox
             };
         }
 
-        public static implicit operator short     (SimpleValue value) 
+        public static implicit operator short         (SimpleValue value) 
         {
             return value.ValueType switch
             {
@@ -123,7 +127,7 @@ namespace Pankraty.NoBox
             };
         }
 
-        public static implicit operator ushort    (SimpleValue value)
+        public static implicit operator ushort        (SimpleValue value)
         {
             return value.ValueType switch
             {
@@ -144,7 +148,7 @@ namespace Pankraty.NoBox
 
         }
 
-        public static implicit operator int       (SimpleValue value) 
+        public static implicit operator int           (SimpleValue value) 
         {
             return value.ValueType switch
             {
@@ -165,7 +169,7 @@ namespace Pankraty.NoBox
 
         }
 
-        public static implicit operator uint      (SimpleValue value) 
+        public static implicit operator uint          (SimpleValue value) 
         {
             return value.ValueType switch
             {
@@ -185,7 +189,7 @@ namespace Pankraty.NoBox
             };
         }
 
-        public static implicit operator long      (SimpleValue value) 
+        public static implicit operator long          (SimpleValue value) 
         {
             return value.ValueType switch
             {
@@ -205,7 +209,7 @@ namespace Pankraty.NoBox
             };
         }
 
-        public static implicit operator ulong     (SimpleValue value) 
+        public static implicit operator ulong         (SimpleValue value) 
         {
             return value.ValueType switch
             {
@@ -226,7 +230,7 @@ namespace Pankraty.NoBox
 
         }
 
-        public static implicit operator float     (SimpleValue value) 
+        public static implicit operator float         (SimpleValue value) 
         {
             return value.ValueType switch
             {
@@ -246,7 +250,7 @@ namespace Pankraty.NoBox
             };
         }
 
-        public static implicit operator double    (SimpleValue value)
+        public static implicit operator double        (SimpleValue value)
         {
             return value.ValueType switch
             {
@@ -266,7 +270,7 @@ namespace Pankraty.NoBox
             };
         }
 
-        public static implicit operator char      (SimpleValue value) 
+        public static implicit operator char          (SimpleValue value) 
         {
             if (value.ValueType == SimpleValueType.Char)
                 return value._charValue;
@@ -274,7 +278,7 @@ namespace Pankraty.NoBox
             throw new InvalidCastException();
         }
 
-        public static implicit operator DateTime  (SimpleValue value)
+        public static implicit operator DateTime      (SimpleValue value)
         {
             if (value.ValueType == SimpleValueType.DateTime)
                 return value._dateTimeValue;
@@ -282,7 +286,17 @@ namespace Pankraty.NoBox
             throw new InvalidCastException();
         }
 
-        public static implicit operator TimeSpan  (SimpleValue value)
+        public static implicit operator DateTimeOffset(SimpleValue value)
+        {
+            return value.ValueType switch
+            {
+                SimpleValueType.DateTime => value._dateTimeValue,
+                SimpleValueType.DateTimeOffset => value._dateTimeOffsetValue,
+                _ => throw new InvalidCastException()
+            };
+        }
+
+        public static implicit operator TimeSpan      (SimpleValue value)
         {
             if (value.ValueType == SimpleValueType.TimeSpan)
                 return value._timeSpanValue;
@@ -290,7 +304,15 @@ namespace Pankraty.NoBox
             throw new InvalidCastException();
         }
 
-        public static implicit operator decimal   (SimpleValue value)
+        public static implicit operator Guid(SimpleValue value)
+        {
+            if (value.ValueType == SimpleValueType.Guid)
+                return value._guidValue;
+
+            throw new InvalidCastException();
+        }
+
+        public static implicit operator decimal       (SimpleValue value)
         {
             return value.ValueType switch
             {
@@ -311,21 +333,23 @@ namespace Pankraty.NoBox
         }
 
 
-        public static implicit operator SimpleValue (bool       value) { return new SimpleValue(value); }
-        public static implicit operator SimpleValue (sbyte      value) { return new SimpleValue(value); }
-        public static implicit operator SimpleValue (byte       value) { return new SimpleValue(value); }
-        public static implicit operator SimpleValue (short      value) { return new SimpleValue(value); }
-        public static implicit operator SimpleValue (ushort     value) { return new SimpleValue(value); }
-        public static implicit operator SimpleValue (int        value) { return new SimpleValue(value); }
-        public static implicit operator SimpleValue (uint       value) { return new SimpleValue(value); }
-        public static implicit operator SimpleValue (long       value) { return new SimpleValue(value); }
-        public static implicit operator SimpleValue (ulong      value) { return new SimpleValue(value); }
-        public static implicit operator SimpleValue (float      value) { return new SimpleValue(value); }
-        public static implicit operator SimpleValue (double     value) { return new SimpleValue(value); }
-        public static implicit operator SimpleValue (char       value) { return new SimpleValue(value); }
-        public static implicit operator SimpleValue (DateTime   value) { return new SimpleValue(value); }
-        public static implicit operator SimpleValue (TimeSpan   value) { return new SimpleValue(value); }
-        public static implicit operator SimpleValue (decimal    value) { return new SimpleValue(value); }
+        public static implicit operator SimpleValue (bool           value) { return new SimpleValue(value); }
+        public static implicit operator SimpleValue (sbyte          value) { return new SimpleValue(value); }
+        public static implicit operator SimpleValue (byte           value) { return new SimpleValue(value); }
+        public static implicit operator SimpleValue (short          value) { return new SimpleValue(value); }
+        public static implicit operator SimpleValue (ushort         value) { return new SimpleValue(value); }
+        public static implicit operator SimpleValue (int            value) { return new SimpleValue(value); }
+        public static implicit operator SimpleValue (uint           value) { return new SimpleValue(value); }
+        public static implicit operator SimpleValue (long           value) { return new SimpleValue(value); }
+        public static implicit operator SimpleValue (ulong          value) { return new SimpleValue(value); }
+        public static implicit operator SimpleValue (float          value) { return new SimpleValue(value); }
+        public static implicit operator SimpleValue (double         value) { return new SimpleValue(value); }
+        public static implicit operator SimpleValue (char           value) { return new SimpleValue(value); }
+        public static implicit operator SimpleValue (DateTime       value) { return new SimpleValue(value); }
+        public static implicit operator SimpleValue (DateTimeOffset value) { return new SimpleValue(value); }
+        public static implicit operator SimpleValue (TimeSpan       value) { return new SimpleValue(value); }
+        public static implicit operator SimpleValue (Guid           value) { return new SimpleValue(value); }
+        public static implicit operator SimpleValue (decimal        value) { return new SimpleValue(value); }
 
         #endregion Implicit Cast
 
@@ -374,22 +398,24 @@ namespace Pankraty.NoBox
         {
             return ValueType switch
             {
-                SimpleValueType.Bool     => _boolValue.ToString(provider),
-                SimpleValueType.SByte    => _sByteValue.ToString(format, provider),
-                SimpleValueType.Byte     => _byteValue.ToString(format, provider),
-                SimpleValueType.Short    => _shortValue.ToString(format, provider),
-                SimpleValueType.UShort   => _uShortValue.ToString(format, provider),
-                SimpleValueType.Int      => _intValue.ToString(format, provider),
-                SimpleValueType.UInt     => _uIntValue.ToString(format, provider),
-                SimpleValueType.Long     => _longValue.ToString(format, provider),
-                SimpleValueType.ULong    => _uLongValue.ToString(format, provider),
-                SimpleValueType.Float    => _floatValue.ToString(format, provider),
-                SimpleValueType.Double   => _doubleValue.ToString(format, provider),
-                SimpleValueType.Char     => _charValue.ToString(provider),
-                SimpleValueType.DateTime => _dateTimeValue.ToString(format, provider),
-                SimpleValueType.TimeSpan => _timeSpanValue.ToString(format, provider),
-                SimpleValueType.Decimal  => _decimalValue.ToString(format, provider),
-                _                        => throw new ArgumentOutOfRangeException(nameof(ValueType), $"Unrecognized value type {ValueType}")
+                SimpleValueType.Bool           => _boolValue.ToString(provider),
+                SimpleValueType.SByte          => _sByteValue.ToString(format, provider),
+                SimpleValueType.Byte           => _byteValue.ToString(format, provider),
+                SimpleValueType.Short          => _shortValue.ToString(format, provider),
+                SimpleValueType.UShort         => _uShortValue.ToString(format, provider),
+                SimpleValueType.Int            => _intValue.ToString(format, provider),
+                SimpleValueType.UInt           => _uIntValue.ToString(format, provider),
+                SimpleValueType.Long           => _longValue.ToString(format, provider),
+                SimpleValueType.ULong          => _uLongValue.ToString(format, provider),
+                SimpleValueType.Float          => _floatValue.ToString(format, provider),
+                SimpleValueType.Double         => _doubleValue.ToString(format, provider),
+                SimpleValueType.Char           => _charValue.ToString(provider),
+                SimpleValueType.DateTime       => _dateTimeValue.ToString(format, provider),
+                SimpleValueType.DateTimeOffset => _dateTimeOffsetValue.ToString(format, provider),
+                SimpleValueType.TimeSpan       => _timeSpanValue.ToString(format, provider),
+                SimpleValueType.Guid           => _guidValue.ToString(format, provider),
+                SimpleValueType.Decimal        => _decimalValue.ToString(format, provider),
+                _                              => throw new ArgumentOutOfRangeException(nameof(ValueType), $"Unrecognized value type {ValueType}")
             };
         }
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NoBox.Benchmarks.Generators
+namespace Pankraty.NoBox.Benchmarks.Generators
 {
     internal class BoxedValuesGenerator
     {

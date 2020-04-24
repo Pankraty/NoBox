@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Pankraty.NoBox;
 using System;
 
-namespace NoBox.Tests.SimpleValueTests
+namespace Pankraty.NoBox.Tests.SimpleValueTests
 {
     public class SimpleValueCreateTests : TheoryTestBase
     {

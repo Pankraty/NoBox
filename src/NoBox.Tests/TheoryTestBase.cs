@@ -1,7 +1,7 @@
 using NUnit.Framework;
 using System;
 
-namespace NoBox.Tests
+namespace Pankraty.NoBox.Tests
 {
     public abstract class TheoryTestBase
     {

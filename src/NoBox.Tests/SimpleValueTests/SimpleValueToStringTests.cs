@@ -1,11 +1,10 @@
 using NUnit.Framework;
-using Pankraty.NoBox;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 
-namespace NoBox.Tests.SimpleValueTests
+namespace Pankraty.NoBox.Tests.SimpleValueTests
 {
     public class SimpleValueToStringTests
     {

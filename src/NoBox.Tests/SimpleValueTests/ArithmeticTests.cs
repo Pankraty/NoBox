@@ -1,8 +1,7 @@
 ﻿using AutoFixture;
 using NUnit.Framework;
-using Pankraty.NoBox;
 
-namespace NoBox.Tests.SimpleValueTests
+namespace Pankraty.NoBox.Tests.SimpleValueTests
 {
     public class ArithmeticTests
     {

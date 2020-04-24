@@ -1,9 +1,8 @@
 using NUnit.Framework;
-using Pankraty.NoBox;
 using System;
 using System.Collections.Generic;
 
-namespace NoBox.Tests.SimpleValueOrTTests.CastTests
+namespace Pankraty.NoBox.Tests.SimpleValueOrTTests.CastTests
 {
     using SimpleValueOrString = SimpleValueOr<String>;
 

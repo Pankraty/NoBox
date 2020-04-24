@@ -1,7 +1,6 @@
-﻿using Pankraty.NoBox;
-using System;
+﻿using System;
 
-namespace NoBox.Benchmarks.Generators
+namespace Pankraty.NoBox.Benchmarks.Generators
 {
     internal class SimpleValuesGenerator
     {

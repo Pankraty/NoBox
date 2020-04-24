@@ -8,7 +8,7 @@ The `NoBox` library aims to provide an efficient way to operate with primitive v
 
 
 ***
-For example, let's have a look at [this benchmark](https://github.com/Pankraty/NoBox/blob/master/src/NoBox.Benchmarks/Benchmarks/Gen2AllocationsBenchmark.cs). It creates a bunch of primitive objects of 14 different types and put them into list - either `List<System.Object>` (with boxing) or `List<NoBox.SimpleValue>`. On every 1 000 000th iteration the list is cleared, and objects are released.
+For example, let's have a look at [this benchmark](https://github.com/Pankraty/NoBox/blob/master/src/NoBox.Benchmarks/Benchmarks/SimpleValueGen2Allocations.cs). It creates a bunch of primitive objects of 14 different types and put them into a list - either `List<System.Object>` (with boxing) or `List<NoBox.SimpleValue>`. On every 1 000 000th iteration the list is cleared, and objects are released.
 
 Results are fascinating: we've gained more than 3x performance improvement!
 
@@ -19,7 +19,7 @@ Results are fascinating: we've gained more than 3x performance improvement!
 | 'SimpleValue (no boxing)' | 130.7 ms | 2.55 ms |  4.53 ms |  0.28 |
 ```
 
-In [the other benchmark](https://github.com/Pankraty/NoBox/blob/master/src/NoBox.Benchmarks/Benchmarks/Gen0AllocationsBenchmark.cs) we do not preserve the values between iterations, and they are all consumed by GC in generation 0. This time the effect of boxing/unboxing is negligible, and our custom implementation gives way to built-in types, but the difference is about 20-30%, which we find descent.
+In [the other benchmark](https://github.com/Pankraty/NoBox/blob/master/src/NoBox.Benchmarks/Benchmarks/SimpleValueGen0Allocations.cs) we do not preserve the values between iterations, and they are all consumed by GC in generation 0. This time the effect of boxing/unboxing is negligible, and our custom implementation gives way to built-in types, but the difference is about 20-30%, which we find descent.
 
 ```
 |                    Method |     Mean |    Error |   StdDev |   Median | Ratio | RatioSD |

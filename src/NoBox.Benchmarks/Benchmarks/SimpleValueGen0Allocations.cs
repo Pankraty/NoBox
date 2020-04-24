@@ -5,17 +5,18 @@ using System.Collections.Generic;
 
 namespace NoBox.Benchmarks
 {
-    public class Gen2AllocationsBenchmark : IBenchmark
+    public class SimpleValueGen0Allocations : IBenchmark
     {
         public string Description => "In this benchmark we generate many simple values (either boxed to Object " +
-                                     "or presented as SimpleValue) but do not let them be collected in Gen0. " +
-                                     "Here we expect the most apparent difference between the two.";
+                                     "or presented as SimpleValue) that are mostly collected in Gen0. It is natural " +
+                                     "that native types work faster, we just make sure our implementation is not too bad " +
+                                     "in this scenario";
 
         public static int Iterations = 10_000_000;
 
         private readonly BoxedValuesGenerator _boxedValuesGenerator;
         private readonly SimpleValuesGenerator _simpleValuesGenerator;
-        public Gen2AllocationsBenchmark()
+        public SimpleValueGen0Allocations()
         {
             _boxedValuesGenerator = new BoxedValuesGenerator();
             _simpleValuesGenerator = new SimpleValuesGenerator();
@@ -24,17 +25,12 @@ namespace NoBox.Benchmarks
         [Benchmark(Description = "Object (boxing)", Baseline = true)]
         public void Boxing()
         {
-            var l = new List<object>();
-
             var count = 0;
 
             for (int i = 0; i < Iterations; i++)
             {
                 var v = _boxedValuesGenerator.GetNext();
-                l.Add(v);
-                if (l.Count > 1_000_000)
-                    l.Clear();
-
+                
                 if (v is bool b)
                 {
                     count++;
@@ -51,9 +47,6 @@ namespace NoBox.Benchmarks
             for (int i = 0; i < Iterations; i++)
             {
                 var v = _simpleValuesGenerator.GetNext();
-                l.Add(v);
-                if (l.Count > 1_000_000)
-                    l.Clear();
 
                 if (v.ValueType == SimpleValueType.Bool && v)
                 {

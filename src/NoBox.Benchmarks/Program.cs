@@ -8,8 +8,9 @@ namespace NoBox.Benchmarks
     {
         private static readonly Dictionary<char, Type> _benchmarks = 
             new Dictionary<char, Type> {
-                {'1', typeof(Gen0AllocationsBenchmark) },
-                {'2', typeof(Gen2AllocationsBenchmark) },
+                {'1', typeof(SimpleValueGen0Allocations) },
+                {'2', typeof(SimpleValueGen2Allocations) },
+                {'3', typeof(SimpleValueOrStringAllocations) },
             };
 
         static void Main(string[] args)

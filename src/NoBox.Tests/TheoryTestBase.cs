@@ -21,5 +21,6 @@ namespace NoBox.Tests
         [DatapointSource] public uint[] UInts                     = new[] { uint.MinValue, (uint)0, (uint)10, uint.MaxValue };
         [DatapointSource] public ulong[] ULongs                   = new[] { ulong.MinValue, (ulong)0, (ulong)10, ulong.MaxValue };
         [DatapointSource] public ushort[] UShorts                 = new[] { ushort.MinValue, (ushort)0, (ushort)10, ushort.MaxValue };
+        [DatapointSource] public string[] Strings                 = new[] { "", "Test" };
     }
 }

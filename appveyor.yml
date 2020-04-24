@@ -51,6 +51,13 @@ build:
   project: NoBox.sln
   verbosity: minimal
 
+after_test:
+  - choco install opencover.portable
+  - choco install codecov
+  - dotnet build -c Debug /p:DebugType=full src/NoBox.Tests/
+  - OpenCover.Console.exe -register:administrator -target:"C:/Program Files/dotnet/dotnet.exe" -targetargs:"test -c Debug --logger:trx;LogFileName=results.trx /p:DebugType=full src/NoBox.Tests/NoBox.Tests.csproj" -output:".\nobox_coverage.xml"
+  - codecov -f .\nobox_coverage.xml -t $(codecov_token)
+
 artifacts:
   - path: src/NoBox/bin/%CONFIGURATION%/*/NoBox.dll
   - path: src/NoBox/bin/%CONFIGURATION%/*.nupkg

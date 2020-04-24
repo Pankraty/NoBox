@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 namespace Pankraty.NoBox
 {
     [StructLayout(LayoutKind.Explicit)]
-    public struct SimpleValue
+    public readonly struct SimpleValue
     {
         private const int DataOffset = 4;
 

@@ -46,6 +46,13 @@ namespace NoBox.Tests.SimpleValueTests
         }
 
         [Theory]
+        public void CanCreateSimpleValue_FromDateTimeOffset(DateTimeOffset value)
+        {
+            SimpleValue s = value;
+            Assert.AreEqual(SimpleValueType.DateTimeOffset, s.ValueType);
+        }
+
+        [Theory]
         public void CanCreateSimpleValue_FromDecimal(decimal value)
         {
             SimpleValue s = value;
@@ -64,6 +71,13 @@ namespace NoBox.Tests.SimpleValueTests
         {
             SimpleValue s = value;
             Assert.AreEqual(SimpleValueType.Float, s.ValueType);
+        }
+
+        [Theory]
+        public void CanCreateSimpleValue_FromGuid(Guid value)
+        {
+            SimpleValue s = value;
+            Assert.AreEqual(SimpleValueType.Guid, s.ValueType);
         }
 
         [Theory]

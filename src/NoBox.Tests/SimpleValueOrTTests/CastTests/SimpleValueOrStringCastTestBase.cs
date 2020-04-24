@@ -13,7 +13,6 @@ namespace Pankraty.NoBox.Tests.SimpleValueOrTTests.CastTests
             get
             {
                 yield return new TestCaseData(new Func<SimpleValueOrString, bool          >(v => v));
-                yield return new TestCaseData(new Func<SimpleValueOrString, char          >(v => v));
                 yield return new TestCaseData(new Func<SimpleValueOrString, DateTime      >(v => v));
                 yield return new TestCaseData(new Func<SimpleValueOrString, DateTimeOffset>(v => v));
                 yield return new TestCaseData(new Func<SimpleValueOrString, TimeSpan      >(v => v));

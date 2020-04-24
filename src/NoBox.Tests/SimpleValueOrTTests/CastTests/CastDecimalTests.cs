@@ -13,7 +13,7 @@ namespace Pankraty.NoBox.Tests.SimpleValueOrTTests.CastTests
         [TestCaseSource(nameof(CastDecimalValidSources))]
         public T CanCastDecimalToNumbers<T>(Func<SimpleValueOrString, T> castMethod)
         {
-            SimpleValue v = Default;
+            SimpleValueOrString v = Default;
 
             return castMethod(v);
         }
@@ -32,6 +32,7 @@ namespace Pankraty.NoBox.Tests.SimpleValueOrTTests.CastTests
                 yield return new TestCaseData(new Func<SimpleValueOrString, ulong   >(v => v)).Returns((ulong  )Default);
                 yield return new TestCaseData(new Func<SimpleValueOrString, float   >(v => v)).Returns((float  )Default);
                 yield return new TestCaseData(new Func<SimpleValueOrString, double  >(v => v)).Returns((double )Default);
+                yield return new TestCaseData(new Func<SimpleValueOrString, char    >(v => v)).Returns((char   )Default);
                 yield return new TestCaseData(new Func<SimpleValueOrString, decimal >(v => v)).Returns((decimal)Default);
             }
         }

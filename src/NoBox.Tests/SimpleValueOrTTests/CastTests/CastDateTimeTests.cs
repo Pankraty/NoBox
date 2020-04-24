@@ -21,7 +21,7 @@ namespace Pankraty.NoBox.Tests.SimpleValueOrTTests.CastTests
         [TestCaseSource(nameof(CastDateTimeInvalidSources))]
         public void CannotCastDateTimeToNonDates<T>(Func<SimpleValueOrString, T> castMethod)
         {
-            SimpleValue v = new DateTime(2020, 02, 20);
+            SimpleValueOrString v = new DateTime(2020, 02, 20);
 
             Assert.Throws<InvalidCastException>(() => castMethod(v));
         }

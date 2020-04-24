@@ -4,24 +4,23 @@ using System.Collections.Generic;
 
 namespace Pankraty.NoBox.Tests.SimpleValueTests.CastTests
 {
-    public class CastByteTests : SimpleValueCastTestBase
+    public class CastCharTests : SimpleValueCastTestBase
     {
-        private const byte Default = byte.MaxValue;
-
-        [TestCaseSource(nameof(CastByteValidSources))]
-        public T CanCastByteToNumbers<T>(Func<SimpleValue, T> castMethod, byte initialValue)
+        private const char Default = 'd';
+        
+        [TestCaseSource(nameof(CastCharValidSources))]
+        public T CanCastCharToNumbers<T>(Func<SimpleValue, T> castMethod, char initialValue)
         {
             SimpleValue v = initialValue;
 
             return castMethod(v);
         }
 
-        private static IEnumerable<TestCaseData> CastByteValidSources
+        private static IEnumerable<TestCaseData> CastCharValidSources
         {
             get
             {
-                yield return new TestCaseData(new Func<SimpleValue, sbyte   >(v => v), (byte)1).Returns((sbyte  )1);
-                yield return new TestCaseData(new Func<SimpleValue, sbyte   >(v => v), Default).Returns((sbyte  )-1);
+                yield return new TestCaseData(new Func<SimpleValue, sbyte   >(v => v), Default).Returns((sbyte  )Default);
                 yield return new TestCaseData(new Func<SimpleValue, byte    >(v => v), Default).Returns((byte   )Default);
                 yield return new TestCaseData(new Func<SimpleValue, short   >(v => v), Default).Returns((short  )Default);
                 yield return new TestCaseData(new Func<SimpleValue, ushort  >(v => v), Default).Returns((ushort )Default);
@@ -37,7 +36,7 @@ namespace Pankraty.NoBox.Tests.SimpleValueTests.CastTests
         }
 
         [TestCaseSource(nameof(CastNumberInvalidSources))]
-        public void CannotCastByteToNonNumbers<T>(Func<SimpleValue, T> castMethod)
+        public void CannotCastCharToNonNumbers<T>(Func<SimpleValue, T> castMethod)
         {
             SimpleValue v = Default;
 

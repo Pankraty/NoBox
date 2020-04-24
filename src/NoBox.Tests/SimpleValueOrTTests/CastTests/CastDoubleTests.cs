@@ -13,7 +13,7 @@ namespace Pankraty.NoBox.Tests.SimpleValueOrTTests.CastTests
         [TestCaseSource(nameof(CastDoubleValidSources))]
         public T CanCastDoubleToNumbers<T>(Func<SimpleValueOrString, T> castMethod)
         {
-            SimpleValue v = Default;
+            SimpleValueOrString v = Default;
 
             return castMethod(v);
         }

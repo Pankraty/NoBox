@@ -13,7 +13,7 @@ namespace Pankraty.NoBox.Tests.SimpleValueOrTTests.CastTests
         [TestCaseSource(nameof(CastSByteValidSources))]
         public T CanCastSByteToNumbers<T>(Func<SimpleValueOrString, T> castMethod)
         {
-            SimpleValue v = Default;
+            SimpleValueOrString v = Default;
 
             return castMethod(v);
         }

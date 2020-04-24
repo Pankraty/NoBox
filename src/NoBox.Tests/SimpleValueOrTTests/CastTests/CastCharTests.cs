@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using Pankraty.NoBox.Tests.SimpleValueTests.CastTests;
 using System;
 using System.Collections.Generic;
 
@@ -6,24 +7,23 @@ namespace Pankraty.NoBox.Tests.SimpleValueOrTTests.CastTests
 {
     using SimpleValueOrString = SimpleValueOr<String>;
 
-    public class CastByteTests : SimpleValueOrStringCastTestBase
+    public class CastCharTests : SimpleValueOrStringCastTestBase
     {
-        private const byte Default = byte.MaxValue;
-
-        [TestCaseSource(nameof(CastByteValidSources))]
-        public T CanCastByteToNumbers<T>(Func<SimpleValueOrString, T> castMethod, byte initialValue)
+        private const char Default = 'd';
+        
+        [TestCaseSource(nameof(CastCharValidSources))]
+        public T CanCastCharToNumbers<T>(Func<SimpleValueOrString, T> castMethod, char initialValue)
         {
-            SimpleValue v = initialValue;
+            SimpleValueOrString v = initialValue;
 
             return castMethod(v);
         }
 
-        private static IEnumerable<TestCaseData> CastByteValidSources
+        private static IEnumerable<TestCaseData> CastCharValidSources
         {
             get
             {
-                yield return new TestCaseData(new Func<SimpleValueOrString, sbyte   >(v => v), (byte)1).Returns((sbyte  )1);
-                yield return new TestCaseData(new Func<SimpleValueOrString, sbyte   >(v => v), Default).Returns((sbyte  )-1);
+                yield return new TestCaseData(new Func<SimpleValueOrString, sbyte   >(v => v), Default).Returns((sbyte  )Default);
                 yield return new TestCaseData(new Func<SimpleValueOrString, byte    >(v => v), Default).Returns((byte   )Default);
                 yield return new TestCaseData(new Func<SimpleValueOrString, short   >(v => v), Default).Returns((short  )Default);
                 yield return new TestCaseData(new Func<SimpleValueOrString, ushort  >(v => v), Default).Returns((ushort )Default);
@@ -39,7 +39,7 @@ namespace Pankraty.NoBox.Tests.SimpleValueOrTTests.CastTests
         }
 
         [TestCaseSource(nameof(CastNumberInvalidSources))]
-        public void CannotCastByteToNonNumbers<T>(Func<SimpleValueOrString, T> castMethod)
+        public void CannotCastCharToNonNumbers<T>(Func<SimpleValueOrString, T> castMethod)
         {
             SimpleValueOrString v = Default;
 

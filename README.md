@@ -1,6 +1,8 @@
 # NoBox
 
 [![Build status](https://ci.appveyor.com/api/projects/status/3b5mhdn26d19pec9?svg=true)](https://ci.appveyor.com/project/Pankraty/nobox)
+[![codecov](https://codecov.io/gh/Pankraty/NoBox/branch/master/graph/badge.svg)](https://codecov.io/gh/Pankraty/NoBox)
+
 
 Have you ever been struggling with properties that must be able to accept values of various primitive types, such as `int`, `double`, or `decimal`, and return the same value it was put there before? If so, then you probably had to define the type of such property as `System.Object` which basically meant that all values you pass to that property are [boxed and then unboxed](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/types/boxing-and-unboxing). A single boxing operation costs almost nothing, but such operations tend to pile up, inducing a heavy load to the garbage collector (GC).
 

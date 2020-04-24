@@ -30,6 +30,7 @@ namespace Pankraty.NoBox.Tests.SimpleValueTests.CastTests
                 yield return new TestCaseData(new Func<SimpleValue, ulong   >(v => v)).Returns((ulong  )Default);
                 yield return new TestCaseData(new Func<SimpleValue, float   >(v => v)).Returns((float  )Default);
                 yield return new TestCaseData(new Func<SimpleValue, double  >(v => v)).Returns((double )Default);
+                yield return new TestCaseData(new Func<SimpleValue, char    >(v => v)).Returns((char   )Default);
                 yield return new TestCaseData(new Func<SimpleValue, decimal >(v => v)).Returns((decimal)Default);
             }
         }

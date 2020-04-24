@@ -272,10 +272,22 @@ namespace Pankraty.NoBox
 
         public static implicit operator char          (SimpleValue value) 
         {
-            if (value.ValueType == SimpleValueType.Char)
-                return value._charValue;
-
-            throw new InvalidCastException();
+            return value.ValueType switch
+            {
+                SimpleValueType.SByte    => (char) value._sByteValue,
+                SimpleValueType.Byte     => (char) value._byteValue,
+                SimpleValueType.Short    => (char) value._shortValue,
+                SimpleValueType.UShort   => (char) value._uShortValue,
+                SimpleValueType.Int      => (char) value._intValue,
+                SimpleValueType.UInt     => (char) value._uIntValue,
+                SimpleValueType.Long     => (char) value._longValue,
+                SimpleValueType.ULong    => (char) value._uLongValue,
+                SimpleValueType.Float    => (char) value._floatValue,
+                SimpleValueType.Double   => (char) value._doubleValue,
+                SimpleValueType.Char     => (char) value._charValue,
+                SimpleValueType.Decimal  => (char) value._decimalValue,
+                _                        => throw new InvalidCastException()
+            };
         }
 
         public static implicit operator DateTime      (SimpleValue value)

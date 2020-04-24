@@ -1,9 +1,9 @@
+using NUnit.Framework;
+using Pankraty.NoBox;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
-using NUnit.Framework;
-using Pankraty.NoBox;
 
 namespace NoBox.Tests.SimpleValueTests
 {

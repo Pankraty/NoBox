@@ -304,7 +304,7 @@ namespace Pankraty.NoBox
             throw new InvalidCastException();
         }
 
-        public static implicit operator Guid(SimpleValue value)
+        public static implicit operator Guid          (SimpleValue value)
         {
             if (value.ValueType == SimpleValueType.Guid)
                 return value._guidValue;
@@ -358,7 +358,6 @@ namespace Pankraty.NoBox
         /// <summary>
         /// Converts the value of this instance to its equivalent string representation using the formatting conventions of the current culture.
         /// </summary>
-        /// <exception cref="T:System.FormatException"><paramref name="format">format</paramref> is invalid.</exception>
         /// <exception cref="T:System.ArgumentOutOfRangeException">The date and time is outside the range of dates supported by the calendar used by <paramref name="provider">provider</paramref>.</exception>
         public override string ToString()
         {

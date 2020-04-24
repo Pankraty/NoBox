@@ -1,8 +1,9 @@
 ﻿using BenchmarkDotNet.Running;
+using Pankraty.NoBox.Benchmarks.Benchmarks;
 using System;
 using System.Collections.Generic;
 
-namespace NoBox.Benchmarks
+namespace Pankraty.NoBox.Benchmarks
 {
     class Program
     {

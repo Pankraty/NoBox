@@ -1,10 +1,9 @@
 ﻿using BenchmarkDotNet.Attributes;
-using Pankraty.NoBox;
+using Pankraty.NoBox.Benchmarks.Generators;
 using System;
 using System.Collections.Generic;
-using NoBox.Benchmarks.Generators;
 
-namespace NoBox.Benchmarks
+namespace Pankraty.NoBox.Benchmarks.Benchmarks
 {
     public class SimpleValueOrStringAllocations : IBenchmark
     {

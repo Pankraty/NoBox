@@ -1,4 +1,4 @@
-﻿namespace NoBox.Benchmarks
+﻿namespace Pankraty.NoBox.Benchmarks.Benchmarks
 {
     public interface IBenchmark
     {

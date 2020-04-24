@@ -6,6 +6,8 @@
     <IsPackable>false</IsPackable>
 
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+
+    <RootNamespace>Pankraty.NoBox.Tests</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

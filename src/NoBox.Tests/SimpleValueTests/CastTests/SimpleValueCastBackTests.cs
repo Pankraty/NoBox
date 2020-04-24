@@ -1,8 +1,7 @@
 using NUnit.Framework;
-using Pankraty.NoBox;
 using System;
 
-namespace NoBox.Tests.SimpleValueTests.CastTests
+namespace Pankraty.NoBox.Tests.SimpleValueTests.CastTests
 {
     public class SimpleValueCastBackTests : TheoryTestBase
     {

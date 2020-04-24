@@ -1,9 +1,8 @@
 using NUnit.Framework;
-using Pankraty.NoBox;
 using System;
 using System.Collections.Generic;
 
-namespace NoBox.Tests.SimpleValueTests.CastTests
+namespace Pankraty.NoBox.Tests.SimpleValueTests.CastTests
 {
     public class CastULongTests : SimpleValueCastTestBase
     {

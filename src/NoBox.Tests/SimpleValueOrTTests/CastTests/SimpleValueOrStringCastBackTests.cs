@@ -8,6 +8,15 @@ namespace Pankraty.NoBox.Tests.SimpleValueOrTTests.CastTests
     public class SimpleValueOrStringCastBackTests : TheoryTestBase
     {
         [Theory]
+        public void CanCastBackToSimpleValue(int value)
+        {
+            SimpleValue simpleValue = value;
+            SimpleValueOrString s = simpleValue;
+            var actualValue = (SimpleValue)s;
+            Assert.AreEqual(simpleValue, actualValue);
+        }
+
+        [Theory]
         public void CanCastBackToBool(bool value)
         {
             SimpleValueOrString s = value;
@@ -124,6 +133,14 @@ namespace Pankraty.NoBox.Tests.SimpleValueOrTTests.CastTests
         {
             SimpleValueOrString s = value;
             var actualValue = (ushort) s;
+            Assert.AreEqual(value, actualValue);
+        }
+
+        [Theory]
+        public void CanCastBackToString(string value)
+        {
+            SimpleValueOrString s = value;
+            var actualValue = (string)s;
             Assert.AreEqual(value, actualValue);
         }
     }

@@ -38,6 +38,14 @@ namespace Pankraty.NoBox.Tests.SimpleValueTests.CastTests
         }
 
         [Theory]
+        public void CanCastBackToDateTimeOffset(DateTimeOffset value)
+        {
+            SimpleValue s = value;
+            var actualValue = (DateTimeOffset)s;
+            Assert.AreEqual(value, actualValue);
+        }
+
+        [Theory]
         public void CanCastBackToDecimal(decimal value)
         {
             SimpleValue s = value;
@@ -58,6 +66,14 @@ namespace Pankraty.NoBox.Tests.SimpleValueTests.CastTests
         {
             SimpleValue s = value;
             var actualValue = (float) s;
+            Assert.AreEqual(value, actualValue);
+        }
+
+        [Theory]
+        public void CanCastBackToGuid(Guid value)
+        {
+            SimpleValue s = value;
+            var actualValue = (Guid)s;
             Assert.AreEqual(value, actualValue);
         }
 

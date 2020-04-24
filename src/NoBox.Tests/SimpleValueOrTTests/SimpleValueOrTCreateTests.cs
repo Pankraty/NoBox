@@ -158,5 +158,19 @@ namespace Pankraty.NoBox.Tests.SimpleValueOrTTests
             Assert.IsFalse(s.IsValue);
             Assert.IsNull(s.Reference);
         }
+
+        [Theory]
+        public void SimpleTypeThrows_OnAccessingReference(int value)
+        {
+            SimpleValueOrString s = value;
+            Assert.Throws<InvalidOperationException>(() => { _ = s.Reference; });
+        }
+
+        [Theory]
+        public void ReferenceTypeThrows_OnAccessingValue(string value)
+        {
+            SimpleValueOrString s = value;
+            Assert.Throws<InvalidOperationException>(() => { _ = s.Value; });
+        }
     }
 }

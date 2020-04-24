@@ -8,27 +8,29 @@ namespace NoBox.Benchmarks.Generators
 
         public object GetNext()
         {
-            var rem = _counter % 14;
+            var rem = _counter % 16;
             _counter++;
 
-            switch (rem)
+            return rem switch
             {
-                case 0: return true;
-                case 1: return (sbyte)1;
-                case 2: return (byte)2;
-                case 3: return (short)3;
-                case 4: return (ushort)4;
-                case 5: return (int)5;
-                case 6: return (uint)6;
-                case 7: return (long)7;
-                case 8: return (ulong)8;
-                case 9: return (float)9.5;
-                case 10: return (double)10.5;
-                case 11: return (decimal) 11.5m;
-                case 12: return (char)'A';
-                case 13: return new DateTime(2020, 01, 01);
-                default: return TimeSpan.FromHours(1);
-            }
+                0 => (bool) true,
+                1 => (sbyte) 1,
+                2 => (byte) 2,
+                3 => (short) 3,
+                4 => (ushort) 4,
+                5 => (int) 5,
+                6 => (uint) 6,
+                7 => (long) 7,
+                8 => (ulong) 8,
+                9 => (float) 9.5,
+                10 => (double) 10.5,
+                11 => (decimal) 11.5m,
+                12 => (char) 'A',
+                13 => new DateTime(2020, 01, 01),
+                14 => new DateTimeOffset(new DateTime(2020, 01, 01), TimeSpan.FromHours(1)),
+                15 => TimeSpan.FromHours(1),
+                _ => Guid.NewGuid()
+            };
         }
     }
 }

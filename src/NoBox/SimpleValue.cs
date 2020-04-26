@@ -433,7 +433,7 @@ namespace Pankraty.NoBox
         #endregion ToString
 
         /// <summary>
-        /// Check if the current instance belong to one of the numeric types.
+        /// Check if the current instance belongs to one of the numeric types.
         /// </summary>
         public bool IsNumber()
         {

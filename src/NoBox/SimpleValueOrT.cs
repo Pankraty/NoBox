@@ -10,8 +10,15 @@ namespace Pankraty.NoBox
     {
         #region Public Properties
 
+        /// <summary>
+        /// Check if current instance hold a value of a simple type (true) or a reference (false).
+        /// </summary>
         public bool IsValue => _isValue;
 
+        /// <summary>
+        /// Get a simple value stored in the current instance.
+        /// </summary>
+        /// <exception cref="T:System.InvalidOperationException" accessor="get">If current instance stores is not of value type (IsValue=false).</exception>
         public SimpleValue Value
         {
             get
@@ -23,6 +30,10 @@ namespace Pankraty.NoBox
             }
         }
 
+        /// <summary>
+        /// Get a reference stored in the current instance.
+        /// </summary>
+        /// <exception cref="T:System.InvalidOperationException" accessor="get">If current instance is of value type (IsValue=true).</exception>
         public T Reference
         {
             get
@@ -46,12 +57,18 @@ namespace Pankraty.NoBox
 
         #region Constructors
 
+        /// <summary>
+        /// Create a new instance that will store a simple value without boxing.
+        /// </summary>
         public SimpleValueOr(SimpleValue value) : this()
         {
             _isValue = true;
             _value = value;
         }
 
+        /// <summary>
+        /// Create a new instance that will store a reference to the object of type <typeparamref name="T"/>.
+        /// </summary>
         public SimpleValueOr(T reference) : this()
         {
             _reference = reference;

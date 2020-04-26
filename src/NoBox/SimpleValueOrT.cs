@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Pankraty.NoBox
 {
@@ -6,7 +7,8 @@ namespace Pankraty.NoBox
     /// A wrapper type that allows storing a simple value or an instance of a reference type
     /// in the same field without boxing simple values.
     /// </summary>
-    public readonly struct SimpleValueOr<T> where T : class
+    public readonly struct SimpleValueOr<T> : IEquatable<SimpleValueOr<T>>
+        where T : class
     {
         #region Public Properties
 
@@ -263,5 +265,46 @@ namespace Pankraty.NoBox
         }
 
         #endregion ToString
+
+        #region IEquatable Implementation
+
+        public bool Equals(SimpleValueOr<T> other)
+        {
+            if (IsValue)
+            {
+                return other.IsValue &&
+                       EqualityComparer<SimpleValue>.Default.Equals(_value, other._value);
+            }
+            else
+            {
+                return !other.IsValue &&
+                       EqualityComparer<T>.Default.Equals(_reference, other._reference);
+            }
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is SimpleValueOr<T> other && Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return (_value.GetHashCode() * 397) ^ EqualityComparer<T>.Default.GetHashCode(_reference);
+            }
+        }
+
+        public static bool operator ==(SimpleValueOr<T> left, SimpleValueOr<T> right)
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(SimpleValueOr<T> left, SimpleValueOr<T> right)
+        {
+            return !left.Equals(right);
+        }
+
+        #endregion IEquatable Implementation
     }
 }

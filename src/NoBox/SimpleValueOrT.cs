@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Pankraty.NoBox
 {
@@ -6,12 +7,20 @@ namespace Pankraty.NoBox
     /// A wrapper type that allows storing a simple value or an instance of a reference type
     /// in the same field without boxing simple values.
     /// </summary>
-    public readonly struct SimpleValueOr<T> where T : class
+    public readonly struct SimpleValueOr<T> : IEquatable<SimpleValueOr<T>>
+        where T : class
     {
         #region Public Properties
 
+        /// <summary>
+        /// Check if current instance hold a value of a simple type (true) or a reference (false).
+        /// </summary>
         public bool IsValue => _isValue;
 
+        /// <summary>
+        /// Get a simple value stored in the current instance.
+        /// </summary>
+        /// <exception cref="T:System.InvalidOperationException" accessor="get">If current instance stores is not of value type (IsValue=false).</exception>
         public SimpleValue Value
         {
             get
@@ -23,6 +32,10 @@ namespace Pankraty.NoBox
             }
         }
 
+        /// <summary>
+        /// Get a reference stored in the current instance.
+        /// </summary>
+        /// <exception cref="T:System.InvalidOperationException" accessor="get">If current instance is of value type (IsValue=true).</exception>
         public T Reference
         {
             get
@@ -46,12 +59,18 @@ namespace Pankraty.NoBox
 
         #region Constructors
 
+        /// <summary>
+        /// Create a new instance that will store a simple value without boxing.
+        /// </summary>
         public SimpleValueOr(SimpleValue value) : this()
         {
             _isValue = true;
             _value = value;
         }
 
+        /// <summary>
+        /// Create a new instance that will store a reference to the object of type <typeparamref name="T"/>.
+        /// </summary>
         public SimpleValueOr(T reference) : this()
         {
             _reference = reference;
@@ -246,5 +265,46 @@ namespace Pankraty.NoBox
         }
 
         #endregion ToString
+
+        #region IEquatable Implementation
+
+        public bool Equals(SimpleValueOr<T> other)
+        {
+            if (IsValue)
+            {
+                return other.IsValue &&
+                       EqualityComparer<SimpleValue>.Default.Equals(_value, other._value);
+            }
+            else
+            {
+                return !other.IsValue &&
+                       EqualityComparer<T>.Default.Equals(_reference, other._reference);
+            }
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is SimpleValueOr<T> other && Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return (_value.GetHashCode() * 397) ^ EqualityComparer<T>.Default.GetHashCode(_reference);
+            }
+        }
+
+        public static bool operator ==(SimpleValueOr<T> left, SimpleValueOr<T> right)
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(SimpleValueOr<T> left, SimpleValueOr<T> right)
+        {
+            return !left.Equals(right);
+        }
+
+        #endregion IEquatable Implementation
     }
 }

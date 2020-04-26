@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 namespace Pankraty.NoBox
 {
     [StructLayout(LayoutKind.Explicit)]
-    public readonly struct SimpleValue
+    public readonly struct SimpleValue : IEquatable<SimpleValue>
     {
         private const int DataOffset = 4;
 
@@ -433,7 +433,7 @@ namespace Pankraty.NoBox
         #endregion ToString
 
         /// <summary>
-        /// Check if the current instance belong to one of the numeric types.
+        /// Check if the current instance belongs to one of the numeric types.
         /// </summary>
         public bool IsNumber()
         {
@@ -453,5 +453,81 @@ namespace Pankraty.NoBox
                 _                       => false
             };
         }
+
+        #region IEquatable Implementation
+
+        public bool Equals(SimpleValue other)
+        {
+            return _valueType == other._valueType &&
+                   _valueType switch 
+                   {
+                       SimpleValueType.Bool           => _boolValue           == other._boolValue          ,
+                       SimpleValueType.SByte          => _sByteValue          == other._sByteValue         ,
+                       SimpleValueType.Byte           => _byteValue           == other._byteValue          ,
+                       SimpleValueType.Short          => _shortValue          == other._shortValue         ,
+                       SimpleValueType.UShort         => _uShortValue         == other._uShortValue        ,
+                       SimpleValueType.Int            => _intValue            == other._intValue           ,
+                       SimpleValueType.UInt           => _uIntValue           == other._uIntValue          ,
+                       SimpleValueType.Long           => _longValue           == other._longValue          ,
+                       SimpleValueType.ULong          => _uLongValue          == other._uLongValue         ,
+                       SimpleValueType.Float          => _floatValue          == other._floatValue         ,
+                       SimpleValueType.Double         => _doubleValue         == other._doubleValue        ,
+                       SimpleValueType.Char           => _charValue           == other._charValue          ,
+                       SimpleValueType.DateTime       => _dateTimeValue       == other._dateTimeValue      ,
+                       SimpleValueType.DateTimeOffset => _dateTimeOffsetValue == other._dateTimeOffsetValue,
+                       SimpleValueType.TimeSpan       => _timeSpanValue       == other._timeSpanValue      ,
+                       SimpleValueType.Guid           => _guidValue           == other._guidValue          ,
+                       SimpleValueType.Decimal        => _decimalValue        == other._decimalValue       ,
+                       _                              => throw new ArgumentOutOfRangeException()
+                   };
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                var hashCode = (int)_valueType;
+                hashCode = _valueType switch 
+                {
+                     SimpleValueType.Bool           => (hashCode * 397) ^ _boolValue.GetHashCode(),
+                     SimpleValueType.SByte          => (hashCode * 397) ^ _sByteValue.GetHashCode(),
+                     SimpleValueType.Byte           => (hashCode * 397) ^ _byteValue.GetHashCode(),
+                     SimpleValueType.Short          => (hashCode * 397) ^ _shortValue.GetHashCode(),
+                     SimpleValueType.UShort         => (hashCode * 397) ^ _uShortValue.GetHashCode(),
+                     SimpleValueType.Int            => (hashCode * 397) ^ _intValue,
+                     SimpleValueType.UInt           => (hashCode * 397) ^ (int)_uIntValue,
+                     SimpleValueType.Long           => (hashCode * 397) ^ _longValue.GetHashCode(),
+                     SimpleValueType.ULong          => (hashCode * 397) ^ _uLongValue.GetHashCode(),
+                     SimpleValueType.Float          => (hashCode * 397) ^ _floatValue.GetHashCode(),
+                     SimpleValueType.Double         => (hashCode * 397) ^ _doubleValue.GetHashCode(),
+                     SimpleValueType.Char           => (hashCode * 397) ^ _charValue.GetHashCode(),
+                     SimpleValueType.DateTime       => (hashCode * 397) ^ _dateTimeValue.GetHashCode(),
+                     SimpleValueType.DateTimeOffset => (hashCode * 397) ^ _dateTimeOffsetValue.GetHashCode(),
+                     SimpleValueType.TimeSpan       => (hashCode * 397) ^ _timeSpanValue.GetHashCode(),
+                     SimpleValueType.Guid           => (hashCode * 397) ^ _guidValue.GetHashCode(),
+                     SimpleValueType.Decimal        => (hashCode * 397) ^ _decimalValue.GetHashCode(),
+                };
+
+                return hashCode;
+            }
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is SimpleValue other && Equals(other);
+        }
+
+
+        public static bool operator ==(SimpleValue left, SimpleValue right)
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(SimpleValue left, SimpleValue right)
+        {
+            return !left.Equals(right);
+        }
+
+        #endregion IEquatable Implementation
     }
 }

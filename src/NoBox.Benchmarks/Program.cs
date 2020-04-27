@@ -11,7 +11,8 @@ namespace Pankraty.NoBox.Benchmarks
             new Dictionary<char, Type> {
                 {'1', typeof(SimpleValueGen0Allocations) },
                 {'2', typeof(SimpleValueGen2Allocations) },
-                {'3', typeof(SimpleValueOrStringAllocations) },
+                {'3', typeof(ShortValueGen2Allocations) },
+                {'4', typeof(SimpleValueOrStringAllocations) },
             };
 
         static void Main(string[] args)
@@ -30,7 +31,7 @@ namespace Pankraty.NoBox.Benchmarks
                 key = Console.ReadKey();
 
             } while (key.Key != ConsoleKey.Enter && !_benchmarks.TryGetValue(key.KeyChar, out benchmarkType));
-            
+
             if (benchmarkType == null)
                 return;
 

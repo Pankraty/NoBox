@@ -11,7 +11,7 @@ namespace Pankraty.NoBox.Tests.Common
 
         #region Default Values
 
-        // Instances of CLR types used for testing
+        // Instances of source types used for testing
 
         public static bool             Default_bool              => true;
         public static sbyte            Default_sbyte             => 1;
@@ -31,7 +31,8 @@ namespace Pankraty.NoBox.Tests.Common
         public static Guid             Default_Guid              => Guid.Parse("264AA8BB-2E31-4731-8CFC-F0F0B82E637E");
         public static decimal          Default_decimal           => 13.5m;
         public static string           Default_string            => "Test string";
-        public static SimpleValue      Default_SimpleValue        => new SimpleValue(100);
+        public static SimpleValue      Default_SimpleValue       => new SimpleValue(100);
+        public static ShortValue       Default_ShortValue        => new ShortValue('A');
 
         #endregion Default Values
         

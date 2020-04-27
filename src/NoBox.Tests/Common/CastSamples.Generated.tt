@@ -93,6 +93,80 @@
               | 19  |SimpleValue   |	x	x	x	x	x	x	x	x	x	x	x	x	x	x	x	x	x 	- 	V")
         },
 
+        { "ShortValue", new CastTemplateDefinition(
+            new string[]
+            {
+                "bool",
+                "sbyte",
+                "byte",
+                "short",
+                "ushort",
+                "int",
+                "uint",
+                "long",
+                "ulong",
+                "float",
+                "double",
+                "char",
+                "DateTime",
+                "TimeSpan",
+            },
+            //|From:|           To:|	1	2	3	4	5	6	7	8	9	10	11	12	13	14
+            @"|  1  |bool          |	V	-	-	-	-	-	-	-	-	-	-	-	-	-
+              |  2  |sbyte         |	-	V	V	V	V	V	V	V	V	V	V	V	-	-
+              |  3  |byte          |	-	V	V	V	V	V	V	V	V	V	V	V	-	-
+              |  4  |short         |	-	V	V	V	V	V	V	V	V	V	V	V	-	-
+              |  5  |ushort        |	-	V	V	V	V	V	V	V	V	V	V	V	-	-
+              |  6  |int           |	-	V	V	V	V	V	V	V	V	V	V	V	-	-
+              |  7  |uint          |	-	V	V	V	V	V	V	V	V	V	V	V	-	-
+              |  8  |long          |	-	V	V	V	V	V	V	V	V	V	V	V	-	-
+              |  9  |ulong         |	-	V	V	V	V	V	V	V	V	V	V	V	-	-
+              | 10  |float         |	-	V	V	V	V	V	V	V	V	V	V	V	-	-
+              | 11  |double        |	-	V	V	V	V	V	V	V	V	V	V	V	-	-
+              | 12  |char          |	-	V	V	V	V	V	V	V	V	V	V	V	-	-
+              | 13  |DateTime      |	-	-	-	-	-	-	-	-	-	-	-	-	V	-
+              | 14  |TimeSpan      |	-	-	-	-	-	-	-	-	-	-	-	-	-	V")
+        },
+        
+        { "ShortValueOr<String>", new CastTemplateDefinition(
+            new string[]
+            {
+                "bool",
+                "sbyte",
+                "byte",
+                "short",
+                "ushort",
+                "int",
+                "uint",
+                "long",
+                "ulong",
+                "float",
+                "double",
+                "char",
+                "DateTime",
+                "TimeSpan",
+                "string",
+                "ShortValue",
+            },
+            //|From:|           To:|	1	2	3	4	5	6	7	8	9	10	11	12	13	14	15	16
+            @"|  1  |bool          |	V	-	-	-	-	-	-	-	-	-	-	-	-	- 	-	V
+              |  2  |sbyte         |	-	V	V	V	V	V	V	V	V	V	V	V	-	- 	-	V
+              |  3  |byte          |	-	V	V	V	V	V	V	V	V	V	V	V	-	- 	-	V
+              |  4  |short         |	-	V	V	V	V	V	V	V	V	V	V	V	-	- 	-	V
+              |  5  |ushort        |	-	V	V	V	V	V	V	V	V	V	V	V	-	- 	-	V
+              |  6  |int           |	-	V	V	V	V	V	V	V	V	V	V	V	-	- 	-	V
+              |  7  |uint          |	-	V	V	V	V	V	V	V	V	V	V	V	-	- 	-	V
+              |  8  |long          |	-	V	V	V	V	V	V	V	V	V	V	V	-	- 	-	V
+              |  9  |ulong         |	-	V	V	V	V	V	V	V	V	V	V	V	-	- 	-	V
+              | 10  |float         |	-	V	V	V	V	V	V	V	V	V	V	V	-	- 	-	V
+              | 11  |double        |	-	V	V	V	V	V	V	V	V	V	V	V	-	- 	-	V
+              | 12  |char          |	-	V	V	V	V	V	V	V	V	V	V	V	-	- 	-	V
+              | 13  |DateTime      |	-	-	-	-	-	-	-	-	-	-	-	-	V	- 	-	V
+              | 14  |TimeSpan      |	-	-	-	-	-	-	-	-	-	-	-	-	-	V 	-	V
+              | 15  |T             |	-	-	-	-	-	-	-	-	-	-	-	-	-	-	V	-
+              | 16  |ShortValue    |	x	x	x	x	x	x	x	x	x	x	x	x	x	x	- 	V")
+        },
+
     };
 #>
 //Generated with T4 templates

@@ -4,20 +4,20 @@ using System.Collections.Generic;
 
 namespace Pankraty.NoBox.Benchmarks.Benchmarks
 {
-    public class SimpleValueGen2Allocations : IBenchmark
+    public class ShortValueGen2Allocations : IBenchmark
     {
         public string Description => "In this benchmark we generate many simple values (either boxed to Object " +
-                                     "or presented as SimpleValue) but do not let them be collected in Gen0. " +
-                                     "Here we expect a significant difference between the two.";
+                                     "or presented as ShortValue) but do not let them be collected in Gen0. " +
+                                     "Here we expect the most apparent difference between the two.";
 
         public static int Iterations = 10_000_000;
 
-        private readonly BoxedValuesGenerator _boxedValuesGenerator;
-        private readonly SimpleValuesGenerator _simpleValuesGenerator;
-        public SimpleValueGen2Allocations()
+        private readonly ShortBoxedValuesGenerator _boxedValuesGenerator;
+        private readonly ShortValuesGenerator _shortValuesGenerator;
+        public ShortValueGen2Allocations()
         {
-            _boxedValuesGenerator = new BoxedValuesGenerator();
-            _simpleValuesGenerator = new SimpleValuesGenerator();
+            _boxedValuesGenerator = new ShortBoxedValuesGenerator();
+            _shortValuesGenerator = new ShortValuesGenerator();
         }
 
         [Benchmark(Description = "Object (boxing)", Baseline = true)]
@@ -41,15 +41,15 @@ namespace Pankraty.NoBox.Benchmarks.Benchmarks
             }
         }
 
-        [Benchmark(Description = "SimpleValue (no boxing)")]
+        [Benchmark(Description = "ShortValue (no boxing)")]
         public void NoBoxing()
         {
-            var l = new List<SimpleValue>();
+            var l = new List<ShortValue>();
 
             var count = 0;
             for (int i = 0; i < Iterations; i++)
             {
-                var v = _simpleValuesGenerator.GetNext();
+                var v = _shortValuesGenerator.GetNext();
                 l.Add(v);
                 if (l.Count > 1_000_000)
                     l.Clear();

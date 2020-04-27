@@ -4,10 +4,10 @@ using System.Collections.Generic;
 namespace Pankraty.NoBox
 {
     /// <summary>
-    /// A wrapper type that allows storing a simple value or an instance of a reference type
+    /// A wrapper type that allows storing a short simple value or an instance of a reference type
     /// in the same field without boxing simple values.
     /// </summary>
-    public readonly struct SimpleValueOr<T> : IEquatable<SimpleValueOr<T>>
+    public readonly struct ShortValueOr<T> : IEquatable<ShortValueOr<T>>
         where T : class
     {
         #region Public Properties
@@ -21,7 +21,7 @@ namespace Pankraty.NoBox
         /// Get a simple value stored in the current instance.
         /// </summary>
         /// <exception cref="T:System.InvalidOperationException" accessor="get">If current instance stores is not of value type (IsValue=false).</exception>
-        public SimpleValue Value
+        public ShortValue Value
         {
             get
             {
@@ -52,7 +52,7 @@ namespace Pankraty.NoBox
         #region Private Fields
 
         private readonly bool _isValue;
-        private readonly SimpleValue _value;
+        private readonly ShortValue _value;
         private readonly T _reference;
 
         #endregion Private Fields
@@ -62,7 +62,7 @@ namespace Pankraty.NoBox
         /// <summary>
         /// Create a new instance that will store a simple value without boxing.
         /// </summary>
-        public SimpleValueOr(SimpleValue value) : this()
+        public ShortValueOr(ShortValue value) : this()
         {
             _isValue = true;
             _value = value;
@@ -71,7 +71,7 @@ namespace Pankraty.NoBox
         /// <summary>
         /// Create a new instance that will store a reference to the object of type <typeparamref name="T"/>.
         /// </summary>
-        public SimpleValueOr(T reference) : this()
+        public ShortValueOr(T reference) : this()
         {
             _reference = reference;
         }
@@ -80,7 +80,7 @@ namespace Pankraty.NoBox
 
         #region Implicit Casts
 
-        public static implicit operator SimpleValue(SimpleValueOr<T> value)
+        public static implicit operator ShortValue(ShortValueOr<T> value)
         {
             if (value._isValue)
                 return value._value;
@@ -88,7 +88,7 @@ namespace Pankraty.NoBox
             throw new InvalidCastException();
         }
 
-        public static implicit operator bool(SimpleValueOr<T> value)
+        public static implicit operator bool(ShortValueOr<T> value)
         {
             if (value._isValue)
                 return value._value;
@@ -96,7 +96,7 @@ namespace Pankraty.NoBox
             throw new InvalidCastException();
         }
 
-        public static implicit operator sbyte(SimpleValueOr<T> value)
+        public static implicit operator sbyte(ShortValueOr<T> value)
         {
             if (value._isValue)
                 return value._value;
@@ -104,7 +104,7 @@ namespace Pankraty.NoBox
             throw new InvalidCastException();
         }
 
-        public static implicit operator byte(SimpleValueOr<T> value)
+        public static implicit operator byte(ShortValueOr<T> value)
         {
             if (value._isValue)
                 return value._value;
@@ -112,7 +112,7 @@ namespace Pankraty.NoBox
             throw new InvalidCastException();
         }
 
-        public static implicit operator short(SimpleValueOr<T> value)
+        public static implicit operator short(ShortValueOr<T> value)
         {
             if (value._isValue)
                 return value._value;
@@ -120,7 +120,7 @@ namespace Pankraty.NoBox
             throw new InvalidCastException();
         }
 
-        public static implicit operator ushort(SimpleValueOr<T> value)
+        public static implicit operator ushort(ShortValueOr<T> value)
         {
             if (value._isValue)
                 return value._value;
@@ -128,7 +128,7 @@ namespace Pankraty.NoBox
             throw new InvalidCastException();
         }
 
-        public static implicit operator int(SimpleValueOr<T> value)
+        public static implicit operator int(ShortValueOr<T> value)
         {
             if (value._isValue)
                 return value._value;
@@ -136,7 +136,7 @@ namespace Pankraty.NoBox
             throw new InvalidCastException();
         }
 
-        public static implicit operator uint(SimpleValueOr<T> value)
+        public static implicit operator uint(ShortValueOr<T> value)
         {
             if (value._isValue)
                 return value._value;
@@ -144,7 +144,7 @@ namespace Pankraty.NoBox
             throw new InvalidCastException();
         }
 
-        public static implicit operator long(SimpleValueOr<T> value)
+        public static implicit operator long(ShortValueOr<T> value)
         {
             if (value._isValue)
                 return value._value;
@@ -152,7 +152,7 @@ namespace Pankraty.NoBox
             throw new InvalidCastException();
         }
 
-        public static implicit operator ulong(SimpleValueOr<T> value)
+        public static implicit operator ulong(ShortValueOr<T> value)
         {
             if (value._isValue)
                 return value._value;
@@ -160,7 +160,7 @@ namespace Pankraty.NoBox
             throw new InvalidCastException();
         }
 
-        public static implicit operator float(SimpleValueOr<T> value)
+        public static implicit operator float(ShortValueOr<T> value)
         {
             if (value._isValue)
                 return value._value;
@@ -168,7 +168,7 @@ namespace Pankraty.NoBox
             throw new InvalidCastException();
         }
 
-        public static implicit operator double(SimpleValueOr<T> value)
+        public static implicit operator double(ShortValueOr<T> value)
         {
             if (value._isValue)
                 return value._value;
@@ -176,7 +176,7 @@ namespace Pankraty.NoBox
             throw new InvalidCastException();
         }
 
-        public static implicit operator char(SimpleValueOr<T> value)
+        public static implicit operator char(ShortValueOr<T> value)
         {
             if (value._isValue)
                 return value._value;
@@ -184,7 +184,7 @@ namespace Pankraty.NoBox
             throw new InvalidCastException();
         }
 
-        public static implicit operator DateTime(SimpleValueOr<T> value)
+        public static implicit operator DateTime(ShortValueOr<T> value)
         {
             if (value._isValue)
                 return value._value;
@@ -192,7 +192,7 @@ namespace Pankraty.NoBox
             throw new InvalidCastException();
         }
 
-        public static implicit operator DateTimeOffset(SimpleValueOr<T> value)
+        public static implicit operator TimeSpan(ShortValueOr<T> value)
         {
             if (value._isValue)
                 return value._value;
@@ -200,31 +200,7 @@ namespace Pankraty.NoBox
             throw new InvalidCastException();
         }
 
-        public static implicit operator TimeSpan(SimpleValueOr<T> value)
-        {
-            if (value._isValue)
-                return value._value;
-
-            throw new InvalidCastException();
-        }
-
-        public static implicit operator Guid(SimpleValueOr<T> value)
-        {
-            if (value._isValue)
-                return value._value;
-
-            throw new InvalidCastException();
-        }
-
-        public static implicit operator decimal(SimpleValueOr<T> value)
-        {
-            if (value._isValue)
-                return value._value;
-
-            throw new InvalidCastException();
-        }
-
-        public static implicit operator T(SimpleValueOr<T> value)
+        public static implicit operator T(ShortValueOr<T> value)
         {
             if (!value._isValue)
                 return value._reference;
@@ -233,25 +209,22 @@ namespace Pankraty.NoBox
         }
 
 
-        public static implicit operator SimpleValueOr<T> (SimpleValue    value) { return new SimpleValueOr<T>(value); }
-        public static implicit operator SimpleValueOr<T> (bool           value) { return new SimpleValueOr<T>(value); }
-        public static implicit operator SimpleValueOr<T> (sbyte          value) { return new SimpleValueOr<T>(value); }
-        public static implicit operator SimpleValueOr<T> (byte           value) { return new SimpleValueOr<T>(value); }
-        public static implicit operator SimpleValueOr<T> (short          value) { return new SimpleValueOr<T>(value); }
-        public static implicit operator SimpleValueOr<T> (ushort         value) { return new SimpleValueOr<T>(value); }
-        public static implicit operator SimpleValueOr<T> (int            value) { return new SimpleValueOr<T>(value); }
-        public static implicit operator SimpleValueOr<T> (uint           value) { return new SimpleValueOr<T>(value); }
-        public static implicit operator SimpleValueOr<T> (long           value) { return new SimpleValueOr<T>(value); }
-        public static implicit operator SimpleValueOr<T> (ulong          value) { return new SimpleValueOr<T>(value); }
-        public static implicit operator SimpleValueOr<T> (float          value) { return new SimpleValueOr<T>(value); }
-        public static implicit operator SimpleValueOr<T> (double         value) { return new SimpleValueOr<T>(value); }
-        public static implicit operator SimpleValueOr<T> (char           value) { return new SimpleValueOr<T>(value); }
-        public static implicit operator SimpleValueOr<T> (DateTime       value) { return new SimpleValueOr<T>(value); }
-        public static implicit operator SimpleValueOr<T> (DateTimeOffset value) { return new SimpleValueOr<T>(value); }
-        public static implicit operator SimpleValueOr<T> (TimeSpan       value) { return new SimpleValueOr<T>(value); }
-        public static implicit operator SimpleValueOr<T> (Guid           value) { return new SimpleValueOr<T>(value); }
-        public static implicit operator SimpleValueOr<T> (decimal        value) { return new SimpleValueOr<T>(value); }
-        public static implicit operator SimpleValueOr<T> (T              value) { return new SimpleValueOr<T>(value); }
+        public static implicit operator ShortValueOr<T> (ShortValue     value) { return new ShortValueOr<T>(value); }
+        public static implicit operator ShortValueOr<T> (bool           value) { return new ShortValueOr<T>(value); }
+        public static implicit operator ShortValueOr<T> (sbyte          value) { return new ShortValueOr<T>(value); }
+        public static implicit operator ShortValueOr<T> (byte           value) { return new ShortValueOr<T>(value); }
+        public static implicit operator ShortValueOr<T> (short          value) { return new ShortValueOr<T>(value); }
+        public static implicit operator ShortValueOr<T> (ushort         value) { return new ShortValueOr<T>(value); }
+        public static implicit operator ShortValueOr<T> (int            value) { return new ShortValueOr<T>(value); }
+        public static implicit operator ShortValueOr<T> (uint           value) { return new ShortValueOr<T>(value); }
+        public static implicit operator ShortValueOr<T> (long           value) { return new ShortValueOr<T>(value); }
+        public static implicit operator ShortValueOr<T> (ulong          value) { return new ShortValueOr<T>(value); }
+        public static implicit operator ShortValueOr<T> (float          value) { return new ShortValueOr<T>(value); }
+        public static implicit operator ShortValueOr<T> (double         value) { return new ShortValueOr<T>(value); }
+        public static implicit operator ShortValueOr<T> (char           value) { return new ShortValueOr<T>(value); }
+        public static implicit operator ShortValueOr<T> (DateTime       value) { return new ShortValueOr<T>(value); }
+        public static implicit operator ShortValueOr<T> (TimeSpan       value) { return new ShortValueOr<T>(value); }
+        public static implicit operator ShortValueOr<T> (T              value) { return new ShortValueOr<T>(value); }
 
         #endregion Implicit Casts
 
@@ -268,12 +241,12 @@ namespace Pankraty.NoBox
 
         #region IEquatable Implementation
 
-        public bool Equals(SimpleValueOr<T> other)
+        public bool Equals(ShortValueOr<T> other)
         {
             if (IsValue)
             {
                 return other.IsValue &&
-                       EqualityComparer<SimpleValue>.Default.Equals(_value, other._value);
+                       EqualityComparer<ShortValue>.Default.Equals(_value, other._value);
             }
             else
             {
@@ -284,7 +257,7 @@ namespace Pankraty.NoBox
 
         public override bool Equals(object obj)
         {
-            return obj is SimpleValueOr<T> other && Equals(other);
+            return obj is ShortValueOr<T> other && Equals(other);
         }
 
         public override int GetHashCode()
@@ -302,12 +275,12 @@ namespace Pankraty.NoBox
             }
         }
 
-        public static bool operator ==(SimpleValueOr<T> left, SimpleValueOr<T> right)
+        public static bool operator ==(ShortValueOr<T> left, ShortValueOr<T> right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(SimpleValueOr<T> left, SimpleValueOr<T> right)
+        public static bool operator !=(ShortValueOr<T> left, ShortValueOr<T> right)
         {
             return !left.Equals(right);
         }

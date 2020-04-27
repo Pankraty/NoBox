@@ -1,15 +1,15 @@
 ﻿using NUnit.Framework;
 using System;
 
-namespace Pankraty.NoBox.Tests.SimpleValueOrTTests
+namespace Pankraty.NoBox.Tests.ShortValueOrTTests
 {
-    public class SimpleValueOrTEqualityTests
+    public class ShortValueOrTEqualityTests
     {
         [Test]
-        public void SimpleValues_AreComparedByValue()
+        public void ShortValues_AreComparedByValue()
         {
-            SimpleValueOr<String> value1 = 100;
-            SimpleValueOr<String> value2 = 100;
+            ShortValueOr<String> value1 = 100;
+            ShortValueOr<String> value2 = 100;
 
             Assert.True(value1.Equals(value2));
             Assert.True(value1 == value2);
@@ -25,9 +25,9 @@ namespace Pankraty.NoBox.Tests.SimpleValueOrTTests
             var object1 = new TestObject();
             var object2 = new TestObject();
 
-            SimpleValueOr<TestObject> value1 = object1;
-            SimpleValueOr<TestObject> value2 = object1;
-            SimpleValueOr<TestObject> value3 = object2;
+            ShortValueOr<TestObject> value1 = object1;
+            ShortValueOr<TestObject> value2 = object1;
+            ShortValueOr<TestObject> value3 = object2;
             
             Assert.True(value1.Equals(value2));
             Assert.False(value1.Equals(value3));
@@ -46,9 +46,9 @@ namespace Pankraty.NoBox.Tests.SimpleValueOrTTests
             var object2 = new EquatableObject(100);
             var object3 = new EquatableObject(200);
 
-            SimpleValueOr<EquatableObject> value1 = object1;
-            SimpleValueOr<EquatableObject> value2 = object2;
-            SimpleValueOr<EquatableObject> value3 = object3;
+            ShortValueOr<EquatableObject> value1 = object1;
+            ShortValueOr<EquatableObject> value2 = object2;
+            ShortValueOr<EquatableObject> value3 = object3;
 
             Assert.True(value1.Equals(value2));
             Assert.False(value1.Equals(value3));

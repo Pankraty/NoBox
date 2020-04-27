@@ -264,7 +264,14 @@ namespace Pankraty.NoBox
         {
             unchecked
             {
-                return (_value.GetHashCode() * 397) ^ EqualityComparer<T>.Default.GetHashCode(_reference);
+                if (IsValue)
+                {
+                    return _value.GetHashCode() * 397;
+                }
+                else
+                {
+                    return EqualityComparer<T>.Default.GetHashCode(_reference) * 397;
+                }
             }
         }
 

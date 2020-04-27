@@ -15,6 +15,8 @@ namespace Pankraty.NoBox.Tests.SimpleValueOrTTests
             Assert.True(value1 == value2);
             Assert.False(value1 != value2);
             Assert.True(value1.Equals((object)value2));
+
+            Assert.AreEqual(value1.GetHashCode(), value2.GetHashCode());
         }
 
         [Test]
@@ -32,6 +34,9 @@ namespace Pankraty.NoBox.Tests.SimpleValueOrTTests
             Assert.True(value1 == value2);
             Assert.False(value1 != value2);
             Assert.True(value1.Equals((object)value2));
+
+            Assert.AreEqual(value1.GetHashCode(), value2.GetHashCode());
+            Assert.AreNotEqual(value2.GetHashCode(), value3.GetHashCode());
         }
 
         [Test]
@@ -50,6 +55,17 @@ namespace Pankraty.NoBox.Tests.SimpleValueOrTTests
             Assert.True(value1 == value2);
             Assert.False(value1 != value2);
             Assert.True(value1.Equals((object)value2));
+
+            Assert.AreEqual(value1.GetHashCode(), value2.GetHashCode());
+            Assert.AreNotEqual(value2.GetHashCode(), value3.GetHashCode());
+        }
+
+        [Test]
+        public void NotEquals_ToOtherType()
+        {
+            ShortValueOr<EquatableObject> value1 = new EquatableObject(100);
+            ShortValueOr<TestObject> value2 = new TestObject();
+            Assert.False(value1.Equals(value2));
         }
 
         private class TestObject
@@ -68,6 +84,11 @@ namespace Pankraty.NoBox.Tests.SimpleValueOrTTests
             public bool Equals(EquatableObject other)
             {
                 return Id == other?.Id;
+            }
+
+            public override int GetHashCode()
+            {
+                return Id * 100;
             }
         }
     }

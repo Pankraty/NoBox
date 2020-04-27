@@ -2,6 +2,7 @@
 
 [![Build status](https://ci.appveyor.com/api/projects/status/3b5mhdn26d19pec9?svg=true)](https://ci.appveyor.com/project/Pankraty/nobox)
 [![codecov](https://codecov.io/gh/Pankraty/NoBox/branch/master/graph/badge.svg)](https://codecov.io/gh/Pankraty/NoBox)
+[![.NET Framework](https://img.shields.io/badge/.NET%20Framework-%3E%3D%204.0-red.svg)](#) [![.NET Standard](https://img.shields.io/badge/.NET%20Standard-%3E%3D%202.0-red.svg)](#)
 
 
 Have you ever been struggling with properties that must be able to accept values of various primitive types, such as `int`, `double`, or `decimal`, and return the same value it was put there before? If so, then you probably had to define the type of such property as `System.Object` which basically meant that all values you pass to that property are [boxed and then unboxed](https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/types/boxing-and-unboxing). A single boxing operation costs almost nothing, but such operations tend to pile up, inducing a heavy load to the garbage collector (GC).
@@ -10,15 +11,15 @@ The `NoBox` library aims to provide an efficient way to operate with primitive v
 
 
 ***
-For example, let's have a look at [this benchmark](https://github.com/Pankraty/NoBox/blob/master/src/NoBox.Benchmarks/Benchmarks/SimpleValueGen2Allocations.cs). It creates a bunch of primitive objects of 14 different types and put them into a list - either `List<System.Object>` (with boxing) or `List<NoBox.SimpleValue>`. On every 1 000 000th iteration the list is cleared, and objects are released.
+For example, let's have a look at [this benchmark](https://github.com/Pankraty/NoBox/blob/master/src/NoBox.Benchmarks/Benchmarks/ShortValueGen2Allocations.cs). It creates a bunch of primitive objects of 13 different types and put them into a list - either `List<System.Object>` (with boxing) or `List<NoBox.SimpleValue>`. On every 1 000 000th iteration the list is cleared, and objects are released.
 
-Results are fascinating: we've gained more than 3x performance improvement!
+Results are fascinating: we've gained more than 4x performance improvement!
 
 ```
-|                    Method |     Mean |   Error |   StdDev | Ratio |
-|-------------------------- |---------:|--------:|---------:|------:|
-|         'Object (boxing)' | 471.5 ms | 9.11 ms | 11.85 ms |  1.00 |
-| 'SimpleValue (no boxing)' | 130.7 ms | 2.55 ms |  4.53 ms |  0.28 |
+|                   Method |     Mean |    Error |   StdDev | Ratio |
+|------------------------- |---------:|---------:|---------:|------:|
+|        'Object (boxing)' | 509.2 ms | 10.16 ms | 26.77 ms |  1.00 |
+| 'ShortValue (no boxing)' | 125.6 ms |  2.46 ms |  3.11 ms |  0.24 |
 ```
 
 In [the other benchmark](https://github.com/Pankraty/NoBox/blob/master/src/NoBox.Benchmarks/Benchmarks/SimpleValueGen0Allocations.cs) we do not preserve the values between iterations, and they are all consumed by GC in generation 0. This time the effect of boxing/unboxing is negligible, and our custom implementation gives way to built-in types, but the difference is about 20-30%, which we find descent.

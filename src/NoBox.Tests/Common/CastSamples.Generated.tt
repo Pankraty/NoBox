@@ -1,0 +1,216 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+<#
+    Dictionary<string, CastTemplateDefinition> supportedTypes = new Dictionary<string, CastTemplateDefinition>
+    {
+        { "SimpleValue", new CastTemplateDefinition(
+            new string[]
+            {
+                "bool",
+                "sbyte",
+                "byte",
+                "short",
+                "ushort",
+                "int",
+                "uint",
+                "long",
+                "ulong",
+                "float",
+                "double",
+                "char",
+                "DateTime",
+                "DateTimeOffset",
+                "TimeSpan",
+                "Guid",
+                "decimal"
+            },
+            //|From:|           To:|	1	2	3	4	5	6	7	8	9	10	11	12	13	14	15	16	17 
+            @"|  1  |bool          |	V	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-  
+              |  2  |sbyte         |	-	V	V	V	V	V	V	V	V	V	V	V	-	-	-	-	V  
+              |  3  |byte          |	-	V	V	V	V	V	V	V	V	V	V	V	-	-	-	-	V  
+              |  4  |short         |	-	V	V	V	V	V	V	V	V	V	V	V	-	-	-	-	V  
+              |  5  |ushort        |	-	V	V	V	V	V	V	V	V	V	V	V	-	-	-	-	V  
+              |  6  |int           |	-	V	V	V	V	V	V	V	V	V	V	V	-	-	-	-	V  
+              |  7  |uint          |	-	V	V	V	V	V	V	V	V	V	V	V	-	-	-	-	V  
+              |  8  |long          |	-	V	V	V	V	V	V	V	V	V	V	V	-	-	-	-	V  
+              |  9  |ulong         |	-	V	V	V	V	V	V	V	V	V	V	V	-	-	-	-	V  
+              | 10  |float         |	-	V	V	V	V	V	V	V	V	V	V	V	-	-	-	-	V  
+              | 11  |double        |	-	V	V	V	V	V	V	V	V	V	V	V	-	-	-	-	V  
+              | 12  |char          |	-	V	V	V	V	V	V	V	V	V	V	V	-	-	-	-	V  
+              | 13  |DateTime      |	-	-	-	-	-	-	-	-	-	-	-	-	V	V	-	-	-  
+              | 14  |DateTimeOffset|	-	-	-	-	-	-	-	-	-	-	-	-	-	V	-	-	-  
+              | 15  |TimeSpan      |	-	-	-	-	-	-	-	-	-	-	-	-	-	-	V	-	-  
+              | 16  |Guid          |	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	V	-  
+              | 17  |decimal       |	-	V	V	V	V	V	V	V	V	V	V	V	-	-	-	-	V")
+        },
+
+        { "SimpleValueOr<String>", new CastTemplateDefinition(
+            new string[]
+            {
+                "bool",
+                "sbyte",
+                "byte",
+                "short",
+                "ushort",
+                "int",
+                "uint",
+                "long",
+                "ulong",
+                "float",
+                "double",
+                "char",
+                "DateTime",
+                "DateTimeOffset",
+                "TimeSpan",
+                "Guid",
+                "decimal",
+                "string",
+                "SimpleValue",
+            },
+            //|From:|           To:|	1	2	3	4	5	6	7	8	9	10	11	12	13	14	15	16	17	18	19 
+            @"|  1  |bool          |	V	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	- 	- 	V  
+              |  2  |sbyte         |	-	V	V	V	V	V	V	V	V	V	V	V	-	-	-	-	V 	- 	V  
+              |  3  |byte          |	-	V	V	V	V	V	V	V	V	V	V	V	-	-	-	-	V 	- 	V  
+              |  4  |short         |	-	V	V	V	V	V	V	V	V	V	V	V	-	-	-	-	V 	- 	V  
+              |  5  |ushort        |	-	V	V	V	V	V	V	V	V	V	V	V	-	-	-	-	V 	- 	V  
+              |  6  |int           |	-	V	V	V	V	V	V	V	V	V	V	V	-	-	-	-	V 	- 	V  
+              |  7  |uint          |	-	V	V	V	V	V	V	V	V	V	V	V	-	-	-	-	V 	- 	V  
+              |  8  |long          |	-	V	V	V	V	V	V	V	V	V	V	V	-	-	-	-	V 	- 	V  
+              |  9  |ulong         |	-	V	V	V	V	V	V	V	V	V	V	V	-	-	-	-	V 	- 	V  
+              | 10  |float         |	-	V	V	V	V	V	V	V	V	V	V	V	-	-	-	-	V 	- 	V  
+              | 11  |double        |	-	V	V	V	V	V	V	V	V	V	V	V	-	-	-	-	V 	- 	V  
+              | 12  |char          |	-	V	V	V	V	V	V	V	V	V	V	V	-	-	-	-	V 	- 	V  
+              | 13  |DateTime      |	-	-	-	-	-	-	-	-	-	-	-	-	V	V	-	-	- 	- 	V  
+              | 14  |DateTimeOffset|	-	-	-	-	-	-	-	-	-	-	-	-	-	V	-	-	- 	- 	V  
+              | 15  |TimeSpan      |	-	-	-	-	-	-	-	-	-	-	-	-	-	-	V	-	- 	- 	V  
+              | 16  |Guid          |	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	V	- 	- 	V  
+              | 17  |decimal       |	-	V	V	V	V	V	V	V	V	V	V	V	-	-	-	-	V 	- 	V  
+              | 18  |T             |	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	-	- 	V 	-  
+              | 19  |SimpleValue   |	x	x	x	x	x	x	x	x	x	x	x	x	x	x	x	x	x 	- 	V")
+        },
+
+    };
+#>
+//Generated with T4 templates
+using System;
+
+namespace Pankraty.NoBox.Tests.Common
+{
+    public static partial class CastSamples
+    {
+<# foreach (var typeKey in supportedTypes.Keys) 
+{ #>
+        #region Defaults for <#= typeKey#>
+        
+        // Instances of <#= typeKey#> build from CLR types (the correctness of such casts covered by separate tests)
+
+<# 
+    var templateDefinition = supportedTypes[typeKey];
+    foreach (var clrType in templateDefinition.ClrTypes)
+    { 
+        var propName = typeKey.Replace("<", "").Replace(">", "");
+    #>
+        public static <#= typeKey#> <#= propName#>_<#= clrType#> => Default_<#= clrType#>;
+<#  }#>
+
+        #endregion Defaults for <#= typeKey#>
+
+<#}#>
+
+        /// <summary>
+        /// All casts that have to be covered with unit tests
+        /// </summary>
+        private static CastDefinition[] AllCasts =
+        {
+<# foreach (var typeKey in supportedTypes.Keys) 
+{ #>
+            #region From <#= typeKey#> to every type
+        
+<# 
+    var templateDefinition = supportedTypes[typeKey];
+    var propName = typeKey.Replace("<", "").Replace(">", "");
+
+    for (var i = 0; i < templateDefinition.ClrTypes.Length; i++)
+    {
+        for (var j = 0; j < templateDefinition.ClrTypes.Length; j++)
+        {
+            var fromType = templateDefinition.ClrTypes[i];
+            var toType = templateDefinition.ClrTypes[j];
+            var castResult = templateDefinition.CastMatrix[i, j];
+            if (castResult == CastResult.Skip)
+                continue;
+
+            var expectedResult = castResult == CastResult.Valid
+                ? $"({toType})Default_{fromType}"
+                : "invalidCastException";
+#>
+            new CastDefinition<<#= typeKey#>, <#= toType#>>(<#= propName#>_<#= fromType#>, v => v, <#= expectedResult#>),
+<#
+        }
+#>
+
+<#
+    }
+#>
+            #endregion From <#= typeKey#> to every type
+
+<#
+    }
+#>
+        };
+    }
+}
+
+<#+
+public class CastTemplateDefinition
+{
+    public string[] ClrTypes { get; }
+
+    public CastResult[,] CastMatrix { get; }
+
+    public CastTemplateDefinition(string[] clrTypes, string castMatrix)
+    {
+        ClrTypes = clrTypes;
+
+        var matrixLines = castMatrix.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
+
+        if (matrixLines.Length != clrTypes.Length)
+            throw new ArgumentException("Matrix has to have the same number of lines as there are clr types");
+
+        CastMatrix = new CastResult[clrTypes.Length,clrTypes.Length];
+            
+        for (int i = 0; i < clrTypes.Length; i++)
+        {
+            var line = matrixLines[i];
+            var lineElements = line.Substring(line.LastIndexOf("|") + 1)
+                .Split(" \t".ToCharArray(), StringSplitOptions.RemoveEmptyEntries)
+                .Where(el => !string.IsNullOrWhiteSpace(el))
+                .ToArray();
+                
+            if (lineElements.Length != clrTypes.Length)
+            {
+                throw new ArgumentException($"Matrix has {lineElements.Length} items at line {i} while must have {clrTypes.Length}");
+            }
+
+            for (int j = 0; j < clrTypes.Length; j++)
+            {
+                CastMatrix[i, j] = lineElements[j] switch {
+                    "-" => CastResult.Invalid,
+                    "x" => CastResult.Skip,
+                    _ => CastResult.Valid};
+            }
+        }
+    }
+}
+
+public enum CastResult
+{
+    Skip,
+    Valid,
+    Invalid
+}
+#>

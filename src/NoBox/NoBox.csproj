@@ -9,6 +9,10 @@
     <Authors>Pankraty</Authors>
     <Description>A C# library aimed to operate with different primitive types with no boxing</Description>
     <LangVersion>8</LangVersion>
+    <PackageProjectUrl>https://github.com/Pankraty/NoBox</PackageProjectUrl>
+    <PackageTags>boxing value-types</PackageTags>
+    <PackageReleaseNotes>See https://github.com/Pankraty/NoBox/releases/tag/</PackageReleaseNotes>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)'=='Debug'">

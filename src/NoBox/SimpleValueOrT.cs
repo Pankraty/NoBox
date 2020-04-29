@@ -25,10 +25,12 @@ namespace Pankraty.NoBox
         {
             get
             {
-                if (_isValue)
-                    return _value;
-
-                throw new InvalidOperationException($"This instance is not a simple value. Use {nameof(Reference)} property");
+                return _isValue switch
+                {
+                    true => _value,
+                    _ => throw new InvalidOperationException(
+                        $"This instance is not a simple value. Use {nameof(Reference)} property")
+                };
             }
         }
 
@@ -40,10 +42,12 @@ namespace Pankraty.NoBox
         {
             get
             {
-                if (!_isValue)
-                    return _reference;
-
-                throw new InvalidOperationException($"This instance is not a reference. Use {nameof(Value)} property");
+                return _isValue switch
+                {
+                    false => _reference,
+                    _ => throw new InvalidOperationException(
+                        $"This instance is not a reference. Use {nameof(Value)} property")
+                };
             }
         }
 
@@ -232,7 +236,6 @@ namespace Pankraty.NoBox
             throw new InvalidCastException();
         }
 
-
         public static implicit operator SimpleValueOr<T> (SimpleValue    value) { return new SimpleValueOr<T>(value); }
         public static implicit operator SimpleValueOr<T> (bool           value) { return new SimpleValueOr<T>(value); }
         public static implicit operator SimpleValueOr<T> (sbyte          value) { return new SimpleValueOr<T>(value); }
@@ -254,6 +257,20 @@ namespace Pankraty.NoBox
         public static implicit operator SimpleValueOr<T> (T              value) { return new SimpleValueOr<T>(value); }
 
         #endregion Implicit Casts
+
+        #region Explicit Cast
+
+        public Tout CastTo<Tout>()
+        {
+            if (IsValue)
+                return Value.CastTo<Tout>();
+            else
+            {
+                return (Tout)(object)Reference;
+            }
+        }
+
+        #endregion Explicit Cast
 
         #region ToString
 

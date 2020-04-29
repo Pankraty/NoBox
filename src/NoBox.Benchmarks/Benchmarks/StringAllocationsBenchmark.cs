@@ -23,21 +23,24 @@ namespace Pankraty.NoBox.Benchmarks.Benchmarks
         [Benchmark(Description = "Object (boxing)", Baseline = true)]
         public void Boxing()
         {
-            var l = new List<object>();
-            
+            var l1 = new List<object>();
+            var l2 = new List<object>();
+
             var count = 0;
 
             for (int i = 0; i < Iterations; i++)
             {
                 var v = _boxedValuesGenerator.GetNext();
-                
+
                 if (v is Guid)
                     v = v.ToString();
 
-                l.Add(v);
+                l1.Add(v);
+                if (i % 10 == 0)
+                    l2.Add(v);
 
-                if (l.Count > 1_000_000)
-                    l.Clear();
+                if (l1.Count > 1_000_000)
+                    l1.Clear();
 
                 if (v is bool b)
                 {
@@ -49,7 +52,8 @@ namespace Pankraty.NoBox.Benchmarks.Benchmarks
         [Benchmark(Description = "SimpleValueOr<String> (no boxing)")]
         public void NoBoxing()
         {
-            var l = new List<SimpleValueOr<String>>();
+            var l1 = new List<SimpleValueOr<String>>();
+            var l2 = new List<SimpleValueOr<String>>();
 
             var count = 0;
 
@@ -60,10 +64,12 @@ namespace Pankraty.NoBox.Benchmarks.Benchmarks
                 if (v.Value.ValueType == SimpleValueType.Guid)
                     v = v.ToString();
 
-                l.Add(v);
-                
-                if (l.Count > 1_000_000)
-                    l.Clear();
+                l1.Add(v);
+                if (i % 10 == 0)
+                    l2.Add(v);
+
+                if (l1.Count > 1_000_000)
+                    l1.Clear();
 
                 if (v.IsValue && v.Value.ValueType == SimpleValueType.Bool && v.Value)
                 {

@@ -202,7 +202,7 @@ namespace Pankraty.NoBox.Tests.Common
         {
 <# foreach (var typeKey in supportedTypes.Keys) 
 { #>
-            #region From <#= typeKey#> to every type
+            #region Implicit cast from <#= typeKey#> to every type
         
 <# 
     var templateDefinition = supportedTypes[typeKey];
@@ -230,7 +230,34 @@ namespace Pankraty.NoBox.Tests.Common
 <#
     }
 #>
-            #endregion From <#= typeKey#> to every type
+            #endregion Implicit cast from <#= typeKey#> to every type
+
+            #region Explicit cast from <#= typeKey#> to every type
+        
+<# 
+    for (var i = 0; i < templateDefinition.ClrTypes.Length; i++)
+    {
+        for (var j = 0; j < templateDefinition.ClrTypes.Length; j++)
+        {
+            var fromType = templateDefinition.ClrTypes[i];
+            var toType = templateDefinition.ClrTypes[j];
+            var castResult = templateDefinition.CastMatrix[i, j];
+            if (castResult == CastResult.Skip)
+                continue;
+
+            var expectedResult = castResult == CastResult.Valid
+                ? $"({toType})Default_{fromType}"
+                : "invalidCastException";
+#>
+            new CastDefinition<<#= typeKey#>, <#= toType#>>(<#= propName#>_<#= fromType#>, v => v.CastTo<<#= toType#>>(), <#= expectedResult#>),
+<#
+        }
+#>
+
+<#
+    }
+#>
+            #endregion Explicit cast from <#= typeKey#> to every type
 
 <#
     }

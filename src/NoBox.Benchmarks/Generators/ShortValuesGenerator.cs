@@ -4,7 +4,7 @@ namespace Pankraty.NoBox.Benchmarks.Generators
 {
     internal class ShortValuesGenerator
     {
-        private int _counter;
+        private long _counter;
 
         public ShortValue GetNext()
         {

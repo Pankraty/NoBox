@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pankraty.NoBox.Converters;
+using System;
 using System.Globalization;
 using System.Runtime.InteropServices;
 
@@ -364,6 +365,18 @@ namespace Pankraty.NoBox
         public static implicit operator SimpleValue (decimal        value) { return new SimpleValue(value); }
 
         #endregion Implicit Cast
+
+        #region Explicit Cast
+        
+        public Tout CastTo<Tout>()
+        {
+            var converter = SimpleValueConverter.Instance as IValueConverter<SimpleValue, Tout>
+                            ?? throw new InvalidCastException();
+
+            return converter.GetValue(this);
+        }
+
+        #endregion Explicit Cast
 
         #region ToString
 

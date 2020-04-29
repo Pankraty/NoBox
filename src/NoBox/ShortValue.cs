@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pankraty.NoBox.Converters;
+using System;
 using System.Globalization;
 using System.Runtime.InteropServices;
 
@@ -306,6 +307,18 @@ namespace Pankraty.NoBox
         public static implicit operator ShortValue (TimeSpan       value) { return new ShortValue(value); }
 
         #endregion Implicit Cast
+
+        #region Explicit Cast
+
+        public Tout CastTo<Tout>()
+        {
+            var converter = ShortValueConverter.Instance as IValueConverter<ShortValue, Tout>
+                            ?? throw new InvalidCastException();
+
+            return converter.GetValue(this);
+        }
+
+        #endregion Explicit Cast
 
         #region ToString
 

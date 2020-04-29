@@ -60,6 +60,7 @@ after_test:
 after_build:
   - cd src/NoBox/bin/%CONFIGURATION%/
   - 7z a NoBox_%productVersion%.zip */NoBox.dll
+  - cd ../../../../
 
 artifacts:
   - path: src/NoBox/bin/%CONFIGURATION%/*.zip
@@ -72,7 +73,7 @@ nuget:
 
 deploy:
 - provider: GitHub
-  artifact: /.*\.zip/
+  artifact: /.*\.(zip|nupkg)/
   auth_token:
     secure: 5pdvVfRfTSSPchNZYeq2hjGiOOVmGiG//urbVC13tUO7rHYV6oP+1pXdU/tUn2/s
   draft: true

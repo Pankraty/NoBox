@@ -57,7 +57,12 @@ after_test:
   - OpenCover.Console.exe -register:administrator -target:"C:/Program Files/dotnet/dotnet.exe" -targetargs:"test -c Debug --logger:trx;LogFileName=results.trx /p:DebugType=full src/NoBox.Tests/NoBox.Tests.csproj" -filter:"+[NoBox*]* -[*Tests*]*" -output:".\coverage.xml"
   - codecov -f .\coverage.xml -t $(codecov_token)
 
+after_build:
+  - cd src/NoBox/bin/%CONFIGURATION%/
+  - 7z a NoBox_%productVersion%.zip */NoBox.dll
+
 artifacts:
+  - path: src/NoBox/bin/%CONFIGURATION%/*.zip
   - path: src/NoBox/bin/%CONFIGURATION%/*/NoBox.dll
   - path: src/NoBox/bin/%CONFIGURATION%/*.nupkg
 
@@ -67,6 +72,7 @@ nuget:
 
 deploy:
 - provider: GitHub
+  artifact: /.*\.zip/
   auth_token:
     secure: 5pdvVfRfTSSPchNZYeq2hjGiOOVmGiG//urbVC13tUO7rHYV6oP+1pXdU/tUn2/s
   draft: true

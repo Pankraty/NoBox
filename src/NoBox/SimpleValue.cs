@@ -44,7 +44,7 @@ namespace Pankraty.NoBox
         /// <typeparam name="Tin">A primitive type</typeparam>
         /// <param name="value">A value to convert to <see cref="SimpleValue"/></param>
         /// <returns>An instance of <see cref="SimpleValue"/> holding the specified value.</returns>
-        public static SimpleValue Create<Tin>(Tin value)
+        public static SimpleValue Create<Tin>(Tin value) where Tin : struct
         {
             var converter = SimpleValueConverter.Instance as IValueConverter<Tin, SimpleValue>
                             ?? throw new InvalidCastException();

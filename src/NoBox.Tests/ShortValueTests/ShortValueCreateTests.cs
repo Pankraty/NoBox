@@ -113,5 +113,11 @@ namespace Pankraty.NoBox.Tests.ShortValueTests
             ShortValue s = value;
             Assert.AreEqual(SimpleValueType.UShort, s.ValueType);
         }
+
+        [Theory]
+        public void CannotCreateShortValue_FromGuid(Guid value)
+        {
+            Assert.Throws<InvalidCastException>(() => ShortValue.Create(value));
+        }
     }
 }

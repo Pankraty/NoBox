@@ -134,5 +134,14 @@ namespace Pankraty.NoBox.Tests.SimpleValueTests
             SimpleValue s = value;
             Assert.AreEqual(SimpleValueType.UShort, s.ValueType);
         }
+
+        [Test]
+        public void CannotCreateSimpleValue_FromStruct()
+        {
+            var value = new TestStruct();
+            Assert.Throws<InvalidCastException>(() => SimpleValue.Create(value));
+        }
+
+        private struct TestStruct { }
     }
 }

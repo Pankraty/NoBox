@@ -258,6 +258,21 @@ namespace Pankraty.NoBox.Tests.Common
     }
 #>
             #endregion Explicit cast from <#= typeKey#> to every type
+            
+            #region Create <#= typeKey#> from a generic argument
+
+<# 
+    for (var i = 0; i < templateDefinition.ClrTypes.Length; i++)
+    {
+        var fromType = templateDefinition.ClrTypes[i];
+        var expectedResult = $"({typeKey})Default_{fromType}";
+#>
+            new CastDefinition<<#= fromType#>, <#= typeKey#>>(Default_<#= fromType#>, v => <#= typeKey#>.Create(v), <#= expectedResult#>),
+
+<#
+    }
+#>
+            #endregion Create <#= typeKey#> from a generic argument
 
 <#
     }

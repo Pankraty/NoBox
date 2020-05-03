@@ -148,5 +148,23 @@ namespace Pankraty.NoBox.Tests.ShortValueOrTTests
             ShortValueOrString s = value;
             Assert.Throws<InvalidOperationException>(() => { _ = s.Value; });
         }
+
+        [Test]
+        public void CanCreateShortValueFromGenericT()
+        {
+            var inputValue = 1;
+            var valueResult = Convert(inputValue);
+            Assert.IsTrue(valueResult.IsValue);
+
+            var inputReference = "Test";
+            var referenceResult = Convert(inputReference);
+            Assert.IsFalse(referenceResult.IsValue);
+            Assert.AreEqual("Test", referenceResult.Reference);
+
+            ShortValueOr<object> Convert<T>(T value)
+            {
+                return ShortValueOr<object>.Create(value);
+            }
+        }
     }
 }

@@ -17,7 +17,21 @@ namespace Pankraty.NoBox.Converters
         IValueConverter<ShortValue, char      >,
         IValueConverter<ShortValue, DateTime  >,
         IValueConverter<ShortValue, TimeSpan  >,
-        IValueConverter<ShortValue, ShortValue>
+        IValueConverter<ShortValue, ShortValue>,
+        IValueConverter<bool      , ShortValue>,
+        IValueConverter<sbyte     , ShortValue>,
+        IValueConverter<byte      , ShortValue>,
+        IValueConverter<short     , ShortValue>,
+        IValueConverter<ushort    , ShortValue>,
+        IValueConverter<int       , ShortValue>,
+        IValueConverter<uint      , ShortValue>,
+        IValueConverter<long      , ShortValue>,
+        IValueConverter<ulong     , ShortValue>,
+        IValueConverter<float     , ShortValue>,
+        IValueConverter<double    , ShortValue>,
+        IValueConverter<char      , ShortValue>,
+        IValueConverter<DateTime  , ShortValue>,
+        IValueConverter<TimeSpan  , ShortValue>
     {
         private static readonly Lazy<ShortValueConverter> _instance = new Lazy<ShortValueConverter>(
             () => new ShortValueConverter());
@@ -55,6 +69,34 @@ namespace Pankraty.NoBox.Converters
         TimeSpan IValueConverter<ShortValue, TimeSpan>.GetValue(ShortValue value) => value;
 
         ShortValue IValueConverter<ShortValue, ShortValue>.GetValue(ShortValue value) => value;
+
+        ShortValue IValueConverter<bool, ShortValue>.GetValue(bool value) => value;
+
+        ShortValue IValueConverter<sbyte, ShortValue>.GetValue(sbyte value) => value;
+
+        ShortValue IValueConverter<byte, ShortValue>.GetValue(byte value) => value;
+
+        ShortValue IValueConverter<short, ShortValue>.GetValue(short value) => value;
+
+        ShortValue IValueConverter<ushort, ShortValue>.GetValue(ushort value) => value;
+
+        ShortValue IValueConverter<int, ShortValue>.GetValue(int value) => value;
+
+        ShortValue IValueConverter<uint, ShortValue>.GetValue(uint value) => value;
+
+        ShortValue IValueConverter<long, ShortValue>.GetValue(long value) => value;
+
+        ShortValue IValueConverter<ulong, ShortValue>.GetValue(ulong value) => value;
+
+        ShortValue IValueConverter<float, ShortValue>.GetValue(float value) => value;
+
+        ShortValue IValueConverter<double, ShortValue>.GetValue(double value) => value;
+
+        ShortValue IValueConverter<char, ShortValue>.GetValue(char value) => value;
+
+        ShortValue IValueConverter<DateTime, ShortValue>.GetValue(DateTime value) => value;
+
+        ShortValue IValueConverter<TimeSpan, ShortValue>.GetValue(TimeSpan value) => value;
 
         #endregion IValueConverter Implementations
     }

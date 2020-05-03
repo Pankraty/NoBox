@@ -4,6 +4,7 @@ using System.Collections.Generic;
 
 namespace Pankraty.NoBox.Benchmarks.Benchmarks
 {
+    [MemoryDiagnoser]
     public class ShortValueGen2Allocations : IBenchmark
     {
         public string Description => "In this benchmark we generate many simple values (either boxed to Object " +

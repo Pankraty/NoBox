@@ -2,12 +2,13 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFrameworks>netcoreapp3.1;net46</TargetFrameworks>
+    <LangVersion>8</LangVersion>
     <RootNamespace>Pankraty.NoBox.Benchmarks</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="BenchmarkDotNet" Version="0.12.1" />
+    <PackageReference Include="BenchmarkDotNet" Version="0.10.14" />
   </ItemGroup>
 
   <ItemGroup>

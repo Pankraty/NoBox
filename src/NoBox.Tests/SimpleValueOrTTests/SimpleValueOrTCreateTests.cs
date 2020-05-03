@@ -172,5 +172,23 @@ namespace Pankraty.NoBox.Tests.SimpleValueOrTTests
             SimpleValueOrString s = value;
             Assert.Throws<InvalidOperationException>(() => { _ = s.Value; });
         }
+
+        [Test]
+        public void CanCreateSimpleValueFromGenericT()
+        {
+            var inputValue = 1;
+            var valueResult = Convert(inputValue);
+            Assert.IsTrue(valueResult.IsValue);
+
+            var inputReference = "Test";
+            var referenceResult = Convert(inputReference);
+            Assert.IsFalse(referenceResult.IsValue);
+            Assert.AreEqual("Test", referenceResult.Reference);
+
+            SimpleValueOr<object> Convert<T>(T value)
+            {
+                return SimpleValueOr<object>.Create(value);
+            }
+        }
     }
 }

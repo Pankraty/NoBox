@@ -724,6 +724,44 @@ namespace Pankraty.NoBox.Tests.Common
             new CastDefinition<SimpleValue, decimal>(SimpleValue_decimal, v => v.CastTo<decimal>(), (decimal)Default_decimal),
 
             #endregion Explicit cast from SimpleValue to every type
+            
+            #region Create SimpleValue from a generic argument
+
+            new CastDefinition<bool, SimpleValue>(Default_bool, v => SimpleValue.Create(v), (SimpleValue)Default_bool),
+
+            new CastDefinition<sbyte, SimpleValue>(Default_sbyte, v => SimpleValue.Create(v), (SimpleValue)Default_sbyte),
+
+            new CastDefinition<byte, SimpleValue>(Default_byte, v => SimpleValue.Create(v), (SimpleValue)Default_byte),
+
+            new CastDefinition<short, SimpleValue>(Default_short, v => SimpleValue.Create(v), (SimpleValue)Default_short),
+
+            new CastDefinition<ushort, SimpleValue>(Default_ushort, v => SimpleValue.Create(v), (SimpleValue)Default_ushort),
+
+            new CastDefinition<int, SimpleValue>(Default_int, v => SimpleValue.Create(v), (SimpleValue)Default_int),
+
+            new CastDefinition<uint, SimpleValue>(Default_uint, v => SimpleValue.Create(v), (SimpleValue)Default_uint),
+
+            new CastDefinition<long, SimpleValue>(Default_long, v => SimpleValue.Create(v), (SimpleValue)Default_long),
+
+            new CastDefinition<ulong, SimpleValue>(Default_ulong, v => SimpleValue.Create(v), (SimpleValue)Default_ulong),
+
+            new CastDefinition<float, SimpleValue>(Default_float, v => SimpleValue.Create(v), (SimpleValue)Default_float),
+
+            new CastDefinition<double, SimpleValue>(Default_double, v => SimpleValue.Create(v), (SimpleValue)Default_double),
+
+            new CastDefinition<char, SimpleValue>(Default_char, v => SimpleValue.Create(v), (SimpleValue)Default_char),
+
+            new CastDefinition<DateTime, SimpleValue>(Default_DateTime, v => SimpleValue.Create(v), (SimpleValue)Default_DateTime),
+
+            new CastDefinition<DateTimeOffset, SimpleValue>(Default_DateTimeOffset, v => SimpleValue.Create(v), (SimpleValue)Default_DateTimeOffset),
+
+            new CastDefinition<TimeSpan, SimpleValue>(Default_TimeSpan, v => SimpleValue.Create(v), (SimpleValue)Default_TimeSpan),
+
+            new CastDefinition<Guid, SimpleValue>(Default_Guid, v => SimpleValue.Create(v), (SimpleValue)Default_Guid),
+
+            new CastDefinition<decimal, SimpleValue>(Default_decimal, v => SimpleValue.Create(v), (SimpleValue)Default_decimal),
+
+            #endregion Create SimpleValue from a generic argument
 
             #region Implicit cast from SimpleValueOr<String> to every type
         
@@ -1458,6 +1496,48 @@ namespace Pankraty.NoBox.Tests.Common
             new CastDefinition<SimpleValueOr<String>, SimpleValue>(SimpleValueOrString_SimpleValue, v => v.CastTo<SimpleValue>(), (SimpleValue)Default_SimpleValue),
 
             #endregion Explicit cast from SimpleValueOr<String> to every type
+            
+            #region Create SimpleValueOr<String> from a generic argument
+
+            new CastDefinition<bool, SimpleValueOr<String>>(Default_bool, v => SimpleValueOr<String>.Create(v), (SimpleValueOr<String>)Default_bool),
+
+            new CastDefinition<sbyte, SimpleValueOr<String>>(Default_sbyte, v => SimpleValueOr<String>.Create(v), (SimpleValueOr<String>)Default_sbyte),
+
+            new CastDefinition<byte, SimpleValueOr<String>>(Default_byte, v => SimpleValueOr<String>.Create(v), (SimpleValueOr<String>)Default_byte),
+
+            new CastDefinition<short, SimpleValueOr<String>>(Default_short, v => SimpleValueOr<String>.Create(v), (SimpleValueOr<String>)Default_short),
+
+            new CastDefinition<ushort, SimpleValueOr<String>>(Default_ushort, v => SimpleValueOr<String>.Create(v), (SimpleValueOr<String>)Default_ushort),
+
+            new CastDefinition<int, SimpleValueOr<String>>(Default_int, v => SimpleValueOr<String>.Create(v), (SimpleValueOr<String>)Default_int),
+
+            new CastDefinition<uint, SimpleValueOr<String>>(Default_uint, v => SimpleValueOr<String>.Create(v), (SimpleValueOr<String>)Default_uint),
+
+            new CastDefinition<long, SimpleValueOr<String>>(Default_long, v => SimpleValueOr<String>.Create(v), (SimpleValueOr<String>)Default_long),
+
+            new CastDefinition<ulong, SimpleValueOr<String>>(Default_ulong, v => SimpleValueOr<String>.Create(v), (SimpleValueOr<String>)Default_ulong),
+
+            new CastDefinition<float, SimpleValueOr<String>>(Default_float, v => SimpleValueOr<String>.Create(v), (SimpleValueOr<String>)Default_float),
+
+            new CastDefinition<double, SimpleValueOr<String>>(Default_double, v => SimpleValueOr<String>.Create(v), (SimpleValueOr<String>)Default_double),
+
+            new CastDefinition<char, SimpleValueOr<String>>(Default_char, v => SimpleValueOr<String>.Create(v), (SimpleValueOr<String>)Default_char),
+
+            new CastDefinition<DateTime, SimpleValueOr<String>>(Default_DateTime, v => SimpleValueOr<String>.Create(v), (SimpleValueOr<String>)Default_DateTime),
+
+            new CastDefinition<DateTimeOffset, SimpleValueOr<String>>(Default_DateTimeOffset, v => SimpleValueOr<String>.Create(v), (SimpleValueOr<String>)Default_DateTimeOffset),
+
+            new CastDefinition<TimeSpan, SimpleValueOr<String>>(Default_TimeSpan, v => SimpleValueOr<String>.Create(v), (SimpleValueOr<String>)Default_TimeSpan),
+
+            new CastDefinition<Guid, SimpleValueOr<String>>(Default_Guid, v => SimpleValueOr<String>.Create(v), (SimpleValueOr<String>)Default_Guid),
+
+            new CastDefinition<decimal, SimpleValueOr<String>>(Default_decimal, v => SimpleValueOr<String>.Create(v), (SimpleValueOr<String>)Default_decimal),
+
+            new CastDefinition<string, SimpleValueOr<String>>(Default_string, v => SimpleValueOr<String>.Create(v), (SimpleValueOr<String>)Default_string),
+
+            new CastDefinition<SimpleValue, SimpleValueOr<String>>(Default_SimpleValue, v => SimpleValueOr<String>.Create(v), (SimpleValueOr<String>)Default_SimpleValue),
+
+            #endregion Create SimpleValueOr<String> from a generic argument
 
             #region Implicit cast from ShortValue to every type
         
@@ -1886,6 +1966,38 @@ namespace Pankraty.NoBox.Tests.Common
             new CastDefinition<ShortValue, TimeSpan>(ShortValue_TimeSpan, v => v.CastTo<TimeSpan>(), (TimeSpan)Default_TimeSpan),
 
             #endregion Explicit cast from ShortValue to every type
+            
+            #region Create ShortValue from a generic argument
+
+            new CastDefinition<bool, ShortValue>(Default_bool, v => ShortValue.Create(v), (ShortValue)Default_bool),
+
+            new CastDefinition<sbyte, ShortValue>(Default_sbyte, v => ShortValue.Create(v), (ShortValue)Default_sbyte),
+
+            new CastDefinition<byte, ShortValue>(Default_byte, v => ShortValue.Create(v), (ShortValue)Default_byte),
+
+            new CastDefinition<short, ShortValue>(Default_short, v => ShortValue.Create(v), (ShortValue)Default_short),
+
+            new CastDefinition<ushort, ShortValue>(Default_ushort, v => ShortValue.Create(v), (ShortValue)Default_ushort),
+
+            new CastDefinition<int, ShortValue>(Default_int, v => ShortValue.Create(v), (ShortValue)Default_int),
+
+            new CastDefinition<uint, ShortValue>(Default_uint, v => ShortValue.Create(v), (ShortValue)Default_uint),
+
+            new CastDefinition<long, ShortValue>(Default_long, v => ShortValue.Create(v), (ShortValue)Default_long),
+
+            new CastDefinition<ulong, ShortValue>(Default_ulong, v => ShortValue.Create(v), (ShortValue)Default_ulong),
+
+            new CastDefinition<float, ShortValue>(Default_float, v => ShortValue.Create(v), (ShortValue)Default_float),
+
+            new CastDefinition<double, ShortValue>(Default_double, v => ShortValue.Create(v), (ShortValue)Default_double),
+
+            new CastDefinition<char, ShortValue>(Default_char, v => ShortValue.Create(v), (ShortValue)Default_char),
+
+            new CastDefinition<DateTime, ShortValue>(Default_DateTime, v => ShortValue.Create(v), (ShortValue)Default_DateTime),
+
+            new CastDefinition<TimeSpan, ShortValue>(Default_TimeSpan, v => ShortValue.Create(v), (ShortValue)Default_TimeSpan),
+
+            #endregion Create ShortValue from a generic argument
 
             #region Implicit cast from ShortValueOr<String> to every type
         
@@ -2410,6 +2522,42 @@ namespace Pankraty.NoBox.Tests.Common
             new CastDefinition<ShortValueOr<String>, ShortValue>(ShortValueOrString_ShortValue, v => v.CastTo<ShortValue>(), (ShortValue)Default_ShortValue),
 
             #endregion Explicit cast from ShortValueOr<String> to every type
+            
+            #region Create ShortValueOr<String> from a generic argument
+
+            new CastDefinition<bool, ShortValueOr<String>>(Default_bool, v => ShortValueOr<String>.Create(v), (ShortValueOr<String>)Default_bool),
+
+            new CastDefinition<sbyte, ShortValueOr<String>>(Default_sbyte, v => ShortValueOr<String>.Create(v), (ShortValueOr<String>)Default_sbyte),
+
+            new CastDefinition<byte, ShortValueOr<String>>(Default_byte, v => ShortValueOr<String>.Create(v), (ShortValueOr<String>)Default_byte),
+
+            new CastDefinition<short, ShortValueOr<String>>(Default_short, v => ShortValueOr<String>.Create(v), (ShortValueOr<String>)Default_short),
+
+            new CastDefinition<ushort, ShortValueOr<String>>(Default_ushort, v => ShortValueOr<String>.Create(v), (ShortValueOr<String>)Default_ushort),
+
+            new CastDefinition<int, ShortValueOr<String>>(Default_int, v => ShortValueOr<String>.Create(v), (ShortValueOr<String>)Default_int),
+
+            new CastDefinition<uint, ShortValueOr<String>>(Default_uint, v => ShortValueOr<String>.Create(v), (ShortValueOr<String>)Default_uint),
+
+            new CastDefinition<long, ShortValueOr<String>>(Default_long, v => ShortValueOr<String>.Create(v), (ShortValueOr<String>)Default_long),
+
+            new CastDefinition<ulong, ShortValueOr<String>>(Default_ulong, v => ShortValueOr<String>.Create(v), (ShortValueOr<String>)Default_ulong),
+
+            new CastDefinition<float, ShortValueOr<String>>(Default_float, v => ShortValueOr<String>.Create(v), (ShortValueOr<String>)Default_float),
+
+            new CastDefinition<double, ShortValueOr<String>>(Default_double, v => ShortValueOr<String>.Create(v), (ShortValueOr<String>)Default_double),
+
+            new CastDefinition<char, ShortValueOr<String>>(Default_char, v => ShortValueOr<String>.Create(v), (ShortValueOr<String>)Default_char),
+
+            new CastDefinition<DateTime, ShortValueOr<String>>(Default_DateTime, v => ShortValueOr<String>.Create(v), (ShortValueOr<String>)Default_DateTime),
+
+            new CastDefinition<TimeSpan, ShortValueOr<String>>(Default_TimeSpan, v => ShortValueOr<String>.Create(v), (ShortValueOr<String>)Default_TimeSpan),
+
+            new CastDefinition<string, ShortValueOr<String>>(Default_string, v => ShortValueOr<String>.Create(v), (ShortValueOr<String>)Default_string),
+
+            new CastDefinition<ShortValue, ShortValueOr<String>>(Default_ShortValue, v => ShortValueOr<String>.Create(v), (ShortValueOr<String>)Default_ShortValue),
+
+            #endregion Create ShortValueOr<String> from a generic argument
 
         };
     }

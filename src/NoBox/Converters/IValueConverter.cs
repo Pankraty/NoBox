@@ -1,6 +1,6 @@
 ﻿namespace Pankraty.NoBox.Converters
 {
-    internal interface IValueConverter<in Tin, out T> where Tin: struct
+    internal interface IValueConverter<Tin, T>
     {
         T GetValue(Tin value);
     }

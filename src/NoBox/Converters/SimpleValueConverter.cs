@@ -20,7 +20,25 @@ namespace Pankraty.NoBox.Converters
         IValueConverter<SimpleValue, TimeSpan      >,
         IValueConverter<SimpleValue, Guid          >,
         IValueConverter<SimpleValue, decimal       >,
-        IValueConverter<SimpleValue, SimpleValue   >
+        IValueConverter<SimpleValue, SimpleValue   >,
+        IValueConverter<bool          , SimpleValue>,
+        IValueConverter<sbyte         , SimpleValue>,
+        IValueConverter<byte          , SimpleValue>,
+        IValueConverter<short         , SimpleValue>,
+        IValueConverter<ushort        , SimpleValue>,
+        IValueConverter<int           , SimpleValue>,
+        IValueConverter<uint          , SimpleValue>,
+        IValueConverter<long          , SimpleValue>,
+        IValueConverter<ulong         , SimpleValue>,
+        IValueConverter<float         , SimpleValue>,
+        IValueConverter<double        , SimpleValue>,
+        IValueConverter<char          , SimpleValue>,
+        IValueConverter<DateTime      , SimpleValue>,
+        IValueConverter<DateTimeOffset, SimpleValue>,
+        IValueConverter<TimeSpan      , SimpleValue>,
+        IValueConverter<Guid          , SimpleValue>,
+        IValueConverter<decimal       , SimpleValue>
+
     {
         private static readonly Lazy<SimpleValueConverter> _instance = new Lazy<SimpleValueConverter>(
             () => new SimpleValueConverter());
@@ -65,6 +83,40 @@ namespace Pankraty.NoBox.Converters
 
         SimpleValue IValueConverter<SimpleValue, SimpleValue>.GetValue(SimpleValue value) => value;
 
+        SimpleValue IValueConverter<bool, SimpleValue>.GetValue(bool value) => value;
+
+        SimpleValue IValueConverter<sbyte, SimpleValue>.GetValue(sbyte value) => value;
+
+        SimpleValue IValueConverter<byte, SimpleValue>.GetValue(byte value) => value;
+
+        SimpleValue IValueConverter<short, SimpleValue>.GetValue(short value) => value;
+
+        SimpleValue IValueConverter<ushort, SimpleValue>.GetValue(ushort value) => value;
+
+        SimpleValue IValueConverter<int, SimpleValue>.GetValue(int value) => value;
+
+        SimpleValue IValueConverter<uint, SimpleValue>.GetValue(uint value) => value;
+
+        SimpleValue IValueConverter<long, SimpleValue>.GetValue(long value) => value;
+
+        SimpleValue IValueConverter<ulong, SimpleValue>.GetValue(ulong value) => value;
+
+        SimpleValue IValueConverter<float, SimpleValue>.GetValue(float value) => value;
+
+        SimpleValue IValueConverter<double, SimpleValue>.GetValue(double value) => value;
+
+        SimpleValue IValueConverter<char, SimpleValue>.GetValue(char value) => value;
+
+        SimpleValue IValueConverter<DateTime, SimpleValue>.GetValue(DateTime value) => value;
+
+        SimpleValue IValueConverter<DateTimeOffset, SimpleValue>.GetValue(DateTimeOffset value) => value;
+
+        SimpleValue IValueConverter<TimeSpan, SimpleValue>.GetValue(TimeSpan value) => value;
+
+        SimpleValue IValueConverter<Guid, SimpleValue>.GetValue(Guid value) => value;
+
+        SimpleValue IValueConverter<decimal, SimpleValue>.GetValue(decimal value) => value;
+ 
         #endregion IValueConverter Implementations
     }
 }

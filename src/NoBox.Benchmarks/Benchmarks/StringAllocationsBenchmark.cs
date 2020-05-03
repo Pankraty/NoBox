@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 namespace Pankraty.NoBox.Benchmarks.Benchmarks
 {
+    [MemoryDiagnoser]
     public class SimpleValueOrStringAllocations : IBenchmark
     {
         public string Description => "In this benchmark we try to store simple values and strings as either objects or SimpleValueOr<T> structures. " +

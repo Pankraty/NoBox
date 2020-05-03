@@ -42,7 +42,7 @@ namespace Pankraty.NoBox.Tests.Common
         public static IEnumerable<TestCaseData> GetValidCasts(Type fromType)
         {
             return AllCasts
-                .Where(cst => cst.IsValid && cst.From == fromType)
+                .Where(cst => cst.IsValid && cst.From == fromType || cst.To == fromType)
                 .Select(cst => cst.ToTestCase());
         }
 
@@ -52,7 +52,7 @@ namespace Pankraty.NoBox.Tests.Common
         public static IEnumerable<TestCaseData> GetInvalidCasts(Type fromType)
         {
             return AllCasts
-                .Where(cst => !cst.IsValid && cst.From == fromType)
+                .Where(cst => !cst.IsValid && cst.From == fromType || cst.To == fromType)
                 .Select(cst => cst.ToTestCase());
         }
     }

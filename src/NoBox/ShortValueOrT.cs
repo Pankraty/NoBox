@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pankraty.NoBox.Converters;
+using System;
 using System.Collections.Generic;
 
 namespace Pankraty.NoBox
@@ -10,6 +11,28 @@ namespace Pankraty.NoBox
     public readonly struct ShortValueOr<T> : IEquatable<ShortValueOr<T>>
         where T : class
     {
+        #region Static Members
+
+        /// <summary>
+        /// Create an instance of <see cref="ShortValueOr{T}"/> from a generic argument avoiding its boxing
+        /// if possible.
+        /// </summary>
+        /// <typeparam name="Tin">A primitive or a reference type that can be casted to <typeparamref name="T"/></typeparam>
+        /// <param name="value">A value to convert to <see cref="ShortValueOr{T}"/></param>
+        /// <returns>An instance of <see cref="ShortValueOr{T}"/> holding the specified value.</returns>
+        public static ShortValueOr<T> Create<Tin>(Tin value)
+        {
+            if (ShortValueConverter.Instance is IValueConverter<Tin, ShortValue> converter)
+            {
+                return converter.GetValue(value);
+            }
+
+            // A fallback with boxing
+            return new ShortValueOr<T>((T)(object)value);
+        }
+
+        #endregion Static Members
+
         #region Public Properties
 
         /// <summary>

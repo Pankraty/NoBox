@@ -36,6 +36,24 @@ namespace Pankraty.NoBox
 
         #endregion Data Fields
 
+        #region Static Members
+
+        /// <summary>
+        /// Create an instance of <see cref="SimpleValue"/> from a generic argument/
+        /// </summary>
+        /// <typeparam name="Tin">A primitive type</typeparam>
+        /// <param name="value">A value to convert to <see cref="SimpleValue"/></param>
+        /// <returns>An instance of <see cref="SimpleValue"/> holding the specified value.</returns>
+        public static SimpleValue Create<Tin>(Tin value) where Tin : struct
+        {
+            var converter = SimpleValueConverter.Instance as IValueConverter<Tin, SimpleValue>
+                            ?? throw new InvalidCastException();
+
+            return converter.GetValue(value);
+        }
+
+        #endregion Static Members
+
         #region Constructors
 
         public SimpleValue(bool           value) : this() { _boolValue           = value; _valueType = SimpleValueType.Bool;           }

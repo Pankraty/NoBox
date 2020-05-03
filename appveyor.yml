@@ -2,6 +2,7 @@ version: 0.1.0.{build}
 
 os: Visual Studio 2019
 image: Visual Studio 2019
+skip_branch_with_pr: true
 
 environment:
   AppVeyor: APPVEYOR

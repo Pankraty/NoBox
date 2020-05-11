@@ -52,6 +52,9 @@ build:
   project: NoBox.sln
   verbosity: minimal
 
+test_script:
+  - dotnet test src/NoBox.Tests
+
 after_test:
   - choco install opencover.portable
   - choco install codecov
